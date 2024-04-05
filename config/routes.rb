@@ -11,8 +11,8 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :admins 
-  resources :traders 
+  resources :admins
+  resources :traders
 
   #this route is only for creating initial admin
   patch 'grant_admin', to: 'admins#grant_admin', as: 'grant_admin_admin'
@@ -24,5 +24,5 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Defines the root path route ("/")
-  
+
 end

@@ -12,11 +12,10 @@ class CustomSessionsController < Devise::SessionsController
     # def after_sign_in_path_for
     #   @admins = User.where(admin: true)
     # end
-  
+
     # private
-  
+
     # def authenticate_admin!
     #   redirect_to traders_path, alert: "You are not authorized to access this page." unless current_user.admin?
     # end
 end
-  
