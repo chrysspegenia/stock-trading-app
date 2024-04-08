@@ -11,11 +11,14 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :admins 
   resources :traders 
 
+  namespace :admin do
+    resources :traders
+  end
+
   #this route is only for creating initial admin
-  patch 'grant_admin', to: 'admins#grant_admin', as: 'grant_admin_admin'
+  patch 'grant_admin', to: 'admin/traders#grant_admin', as: 'grant_admin'
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

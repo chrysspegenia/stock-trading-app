@@ -1,7 +1,7 @@
 class CustomSessionsController < Devise::SessionsController
     def after_sign_in_path_for(resource)
         if resource.admin?
-            admins_path
+            admin_traders_path
         else
             traders_path
         end
