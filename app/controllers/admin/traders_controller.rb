@@ -23,7 +23,13 @@ module Admin
             # @pending_trader.save
 
             @pending_trader = User.find(params[:id])
-            @pending_trader.toggle!(:approved) 
+            @pending_trader.toggle!(:approved)
+
+            #only triggers if user approved converted to true
+            if @pending_trader.approved?
+                TraderMailer.with(user: @pending_trader).approved_email.deliver_now
+            end
+            
             redirect_to admin_traders_path
         end
     end 
