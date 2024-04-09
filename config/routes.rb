@@ -14,7 +14,10 @@ Rails.application.routes.draw do
   resources :traders 
 
   namespace :admin do
-    resources :traders
+    resources :traders do
+      get 'pendings', on: :collection
+      post 'approve', on: :member
+    end
   end
 
   #this route is only for creating initial admin
