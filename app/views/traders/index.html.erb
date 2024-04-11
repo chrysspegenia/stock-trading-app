@@ -1,5 +1,11 @@
 <h1>This is the trader page</h1>
 
+<div><%= @trader.first_name%></div> 
+<div><%= @trader.last_name%></div>
+<div><%= @trader.email %></div>
+
+<br> 
+
 <%= button_to "Sign Out", destroy_user_session_path, method: :delete %>
 
 

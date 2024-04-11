@@ -1,29 +1,29 @@
 <h1>This is the admin page</h1>
 
-<h2>All Approved Traders</h2>
-
-<ul>
-  <% @traders.each do |trader| %>
-    <li>
-      <%= trader.email %> 
-      <%= button_to "Revoke", approve_admin_trader_path(trader), method: :post %>
-    </li>
-  <% end %>
-</ul>
-
 
 <h2>All Pending Traders</h2>
 
 <%# <% if false #comment out code block until the end block %>
 <ul>
   <% @pending_traders.each do |trader| %>
-    <li>
-      <%= trader.email %>
+    <li style="display:flex">
+      <div><%= trader.first_name%> <%= trader.last_name%> <%= trader.email %></div>
       <%= button_to "Approve", approve_admin_trader_path(trader), method: :post %>
     </li>
   <% end %>
 </ul>
 <%# <%end %>
+
+<h2>All Approved Traders</h2>
+
+<ul>
+  <% @traders.each do |trader| %>
+    <li style="display:flex">
+      <div><%= trader.first_name%> <%= trader.last_name%> <%= trader.email %></div> 
+      <%= button_to "Revoke", approve_admin_trader_path(trader), method: :post %>
+    </li>
+  <% end %>
+</ul>
 
 <%# this method is only for creating initial admin %>
 <%= button_to "Grant Admin", grant_admin_path, method: :patch, data: { confirm: "Are you sure you want to grant admin status to this user?" } %>
