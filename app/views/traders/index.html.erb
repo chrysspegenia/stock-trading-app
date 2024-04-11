@@ -1,5 +1,9 @@
 <h1>This is the trader page</h1>
 
+<% if !@trader.approved? %>
+    <h3>"Your account verification is still in progress. We appreciate your patience as we ensure the security and integrity of our platform."</h3>
+<% end %>
+
 <div><%= @trader.first_name%></div> 
 <div><%= @trader.last_name%></div>
 <div><%= @trader.email %></div>
