@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: {sessions: 'custom_sessions'}
-
-  authenticated :user do
-    root to: 'custom_sessions#after_sign_in_path_for', as: :authenticated_root
-  end
+  devise_for :users,
+  controllers: {
+    sessions: 'users/sessions',
+    registrations: 'users/registrations'
+  }
 
   devise_scope :user do
     unauthenticated do
-      root to: 'custom_sessions#new', as: :unauthenticated_root
+      root to: 'users/sessions#new', as: :unauthenticated_root
     end
   end
 
