@@ -14,7 +14,7 @@
   <% @pending_users.each do |user| %>
     <li>
       <%= user.email %>
-      <%= link_to "Approve", approve_admins_path(user.id), method: :patch %>
+      <%= link_to "Approve", approve_admins_path(user), method: :patch %>
     </li>
   <% end %>
 </ul>

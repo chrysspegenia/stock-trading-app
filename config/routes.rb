@@ -13,9 +13,10 @@ Rails.application.routes.draw do
 
   resources :admins do
     collection do
-      patch :approve
+      get :approve
     end
   end
+
   resources :traders
 
   #this route is only for creating initial admin

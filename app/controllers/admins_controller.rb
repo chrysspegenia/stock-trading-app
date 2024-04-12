@@ -1,13 +1,10 @@
 class AdminsController < ApplicationController
     def index
-        @users = User.all
-        @pending_users = User.where(approved: false)
-        @approved_users = User.where(approved: true)
+        @users = User.all.where(admin: false)
+        @pending_users = User.where(admin: false, approved: false)
+        @approved_users = User.where(admin: false, approved: true)
     end
 
-    def show
-        @user = User.find(params[:format])
-    end
 
     def grant_admin
         current_user.update_attribute(:admin, true)
@@ -17,8 +14,9 @@ class AdminsController < ApplicationController
     def approve
         user = User.find(params[:format])
         user.approved = true
-        if user.save
+        if user.save!
           redirect_to admins_path, notice: "#{user.email} has been approved."
+          UserMailer.approval_email(user).deliver_now
         else
           redirect_to admins_path, alert: "Failed to approve #{user.email}."
         end
