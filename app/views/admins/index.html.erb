@@ -8,6 +8,24 @@
   <% end %>
 </ul>
 
+
+<h2>Pending Users</h2>
+<ul>
+  <% @pending_users.each do |user| %>
+    <li>
+      <%= user.email %>
+      <%= link_to "Approve", approve_admins_path(user.id), method: :patch %>
+    </li>
+  <% end %>
+</ul>
+
+<h3>Approved Users</h3>
+<ul>
+  <% @approved_users.each do |user| %>
+    <li><%= user.email %></li>
+  <% end %>
+</ul>
+
 <%# this method is only for creating initial admin %>
 <%= button_to "Grant Admin", grant_admin_admin_path, method: :patch, data: { confirm: "Are you sure you want to grant admin status to this user?" } %>
 
