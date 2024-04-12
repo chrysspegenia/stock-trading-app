@@ -2,16 +2,23 @@
 <html>
   <head>
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+    <title>Welcome to StockPulse!</title>
   </head>
   <body>
-    <h1>Great news!, <%= @trader.first_name %></h1>
+    <h1>Welcome aboard, <%= @trader.first_name %>!</h1>
     <p>
-      Thanks you for your patience. After verifying your credentials, 
-      your account has been approved. You can now start trading on Stock-App.com
+      We're thrilled to inform you that your account on StockPulse has been successfully approved. Your patience throughout the verification process is greatly appreciated.
     </p>
     <p>
-      To login to the site, just follow this link: <%= @url %>.
+      You're now ready to dive into the exciting world of trading. Click the link below to log in and start exploring our platform:
     </p>
-    <p>Thanks for joining and have a great day!</p>
+    <p>
+      <a href="<%= @url %>">Log in to StockPulse</a>
+    </p>
+    <p>
+      If you have any questions or need assistance, feel free to reach out to our support team. We're here to help!
+    </p>
+    <p>Thank you for choosing StockPulse. Wishing you success and prosperity in your trading journey!</p>
+    <p>Best regards,<br>The StockPulse Team</p>
   </body>
 </html>
