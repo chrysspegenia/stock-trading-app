@@ -1,0 +1,10 @@
+
+<h2><%= @trader.first_name %></h2>
+
+<p><%= @trader.last_name %></p>
+
+<p><%= @trader.email %></p>
+
+<%= link_to "Edit", edit_admin_trader_path(@trader) %>
+
+<%= link_to "Back to dashboard", admin_traders_path %>

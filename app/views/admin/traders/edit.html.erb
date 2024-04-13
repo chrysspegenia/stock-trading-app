@@ -1,0 +1,38 @@
+<h1>Edit Trader Details</h1>
+
+<%= form_with(model: @trader, url: admin_trader_path(@trader), method: :patch) do |form| %>
+  <% if @trader.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(@trader.errors.count, "error") %> prohibited this task from being saved:</h2>
+
+      <ul>
+        <% @trader.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :first_name, style: "display: block" %>
+    <%= form.text_field :first_name %>
+  </div>
+
+  <div>
+    <%= form.label :last_name, style: "display: block" %>
+    <%= form.text_field :last_name %>
+  </div>
+
+  <div>
+    <%= form.label :email, style: "display: block" %>
+    <%= form.text_field :email %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<br>
+
+<%= link_to "Back to dashboard", admin_traders_path %>

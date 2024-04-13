@@ -1,5 +1,10 @@
 <h1>This is the admin page</h1>
 
+<%# make notice into an alert form %>
+<p style="color:green"><%= notice %></p>
+
+
+<%= link_to "Create a trader account", new_admin_trader_path %>
 
 <h2>All Pending Traders</h2>
 
@@ -19,7 +24,9 @@
 <ul>
   <% @traders.each do |trader| %>
     <li style="display:flex">
-      <div><%= trader.first_name%> <%= trader.last_name%> <%= trader.email %></div> 
+      <div><%= trader.first_name%> <%= trader.last_name%> <%= trader.email %></div>
+      <%= link_to "Show", admin_trader_path(trader) %>
+      <%# <%= link_to "Edit", edit_admin_trader_path(trader) %>
       <%= button_to "Revoke", approve_admin_trader_path(trader), method: :post %>
     </li>
   <% end %>
