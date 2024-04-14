@@ -4,11 +4,20 @@
     <h3>"Your account verification is still in progress. We appreciate your patience as we ensure the security and integrity of our platform."</h3>
 <% end %>
 
-<div><%= @trader.first_name%></div> 
+<div><%= @trader.first_name%></div>
 <div><%= @trader.last_name%></div>
 <div><%= @trader.email %></div>
 
-<br> 
+<br>
+
+
+<!-- sample add stock from API -->
+<%= form_with(url: add_stock_path, method: :post) do |form| %>
+    <%= form.hidden_field :authenticity_token, value: form_authenticity_token %>
+    <!-- Add any other form fields as needed -->
+
+    <%= form.submit 'Add Stock' %>
+<% end %>
 
 <%= button_to "Sign Out", destroy_user_session_path, method: :delete %>
 

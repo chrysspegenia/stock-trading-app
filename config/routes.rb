@@ -11,8 +11,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :traders 
-
+  resources :traders
   namespace :admin do
     resources :traders do
       get 'pendings', on: :collection
@@ -23,6 +22,9 @@ Rails.application.routes.draw do
   #this route is only for creating initial admin
   patch 'grant_admin', to: 'admin/traders#grant_admin', as: 'grant_admin'
 
+  # Delete this path later.
+  post '/traders/add_stock', to: 'traders#add_stock', as: 'add_stock'
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -30,5 +32,5 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Defines the root path route ("/")
-  
+
 end

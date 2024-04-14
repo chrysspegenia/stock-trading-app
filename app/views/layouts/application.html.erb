@@ -13,4 +13,17 @@
   <body>
     <%= yield %>
   </body>
+
+  <% if flash[:notice] %>
+    <div>
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
+
+  <% if flash[:alert] %>
+    <div>
+      <%= flash[:alert] %>
+    </div>
+  <% end %>
+
 </html>
