@@ -10,14 +10,33 @@
 
 <br>
 
-
-<!-- sample add stock from API -->
-<%= form_with(url: add_stock_path, method: :post) do |form| %>
-    <%= form.hidden_field :authenticity_token, value: form_authenticity_token %>
-    <!-- Add any other form fields as needed -->
-
-    <%= form.submit 'Add Stock' %>
-<% end %>
+<h2>Stocks</h2>
+<table border="1">
+  <thead>
+    <tr>
+      <th>Logo</th>
+      <th>Company Name</th>
+      <th>Symbol</th>
+      <th>Market Cap</th>
+      <th>Price</th>
+      <th>Change</th>
+      <th>% Change</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @quotes.each do |quote| %>
+      <tr>
+        <td><img src="<%= quote[:logo] %>" alt="Company Logo" style="max-width: 100px; max-height: 100px;"></td>
+        <td><%= quote[:name] %></td>
+        <td><%= quote[:symbol] %></td>
+        <td><%= quote[:market_cap] %></td>
+        <td><%= quote[:price] %></td>
+        <td><%= quote[:change] %></td>
+        <td><%= quote[:percent_change] %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
 <%= button_to "Sign Out", destroy_user_session_path, method: :delete %>
 

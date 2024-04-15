@@ -1,32 +1,45 @@
 require 'iex-ruby-client'
 
 class TradersController < ApplicationController
+    SYMBOL_NAMES = ['AAPL', 'GOOGL', 'MSFT', 'META', 'AMZN', 'TSLA'].freeze
+
     def index
         @trader = current_user
-        @stocks = current_user.stocks.all
-        @transactions = current_user.transactions.all
+        # @stocks = current_user.stocks.all
+        # @transactions = current_user.transactions.all
+        @quotes = get_quotes(SYMBOL_NAMES)
     end
 
-    def add_stock
-        symbol = 'AAPL' # Example stock symbol
-        quote = IEX::Api::Client.new.quote(symbol)
+    private
 
-        if quote.present?
-          # Create and save the stock
-          stock = Stock.new(
+    def initialize_iex_client
+       @iex_client ||= IEX::Api::Client.new
+    end
+
+    def get_quotes(symbols)
+        logos = get_logos(symbols)
+        quotes = symbols.map { |symbol| initialize_iex_client.quote(symbol) }
+
+        quotes.map do |quote|
+          logo = logos[quote.symbol]
+          {
+            logo: logo,
             name: quote.company_name,
             symbol: quote.symbol,
-            share: 10, # Example quantity
+            market_cap: quote.market_cap,
             price: quote.latest_price,
-            user_id: current_user.id
-          )
-          if stock.save
-            redirect_to traders_path, notice: 'Stock successfully added. Check stock table.'
-          else
-            redirect_to traders_path, alert: 'Failed to save the stock.'
-          end
-        else
-          redirect_to traders_path, alert: 'Stock symbol not found or API request failed.'
+            change: quote.change,
+            percent_change: quote.change_percent
+          }
         end
+    end
+
+    def get_logos(symbols)
+      logos = {}
+      symbols.each do |symbol|
+        logo = initialize_iex_client.logo(symbol)
+        logos[symbol] = logo.url if logo.present?
       end
+      logos
+    end
 end
