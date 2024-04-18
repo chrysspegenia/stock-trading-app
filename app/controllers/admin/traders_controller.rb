@@ -1,6 +1,6 @@
 module Admin
     class TradersController < ApplicationController
-        # before_action :authorize_admin!
+        before_action :authorize_admin
         before_action :set_trader, only: [:show, :edit, :update]
 
         # Get /admin/traders
@@ -34,12 +34,12 @@ module Admin
             if @pending_trader.approved?
                 TraderMailer.with(user: @pending_trader).approved_email.deliver_later
             end
-            
+
             redirect_to admin_traders_path
         end
 
         #GET /admin/traders/:id
-        def show 
+        def show
         end
 
         #GET /admin/traders/new
@@ -54,7 +54,7 @@ module Admin
         #POST /admin/traders
         def create
             @trader = User.new(trader_params)
-            # @trader.skip_confirmation! #to include this need to add confirmed_at in table and confirmable in model
+            @trader.skip_confirmation! #to include this need to add confirmed_at in table and confirmable in model
             @trader.approved = true
 
             if @trader.save
@@ -76,9 +76,9 @@ module Admin
 
         private
 
-        # def authorize_admin
-        #     redirect_to traders_path unless current_user.admin?
-        # end
+        def authorize_admin
+            redirect_to traders_path unless current_user.admin?
+        end
 
         def set_trader
             @trader = User.find(params[:id])
@@ -87,5 +87,5 @@ module Admin
         def trader_params
             params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :approved)
         end
-    end 
+    end
 end

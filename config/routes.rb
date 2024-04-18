@@ -11,8 +11,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :traders 
-
+  resources :traders
   namespace :admin do
     resources :traders do
       get 'pendings', on: :collection
@@ -30,5 +29,5 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Defines the root path route ("/")
-  
+
 end

@@ -4,13 +4,38 @@
     <h3>"Your account verification is still in progress. We appreciate your patience as we ensure the security and integrity of our platform."</h3>
 <% end %>
 
-<div><%= @trader.first_name%></div> 
+<div><%= @trader.first_name%></div>
 <div><%= @trader.last_name%></div>
 <div><%= @trader.email %></div>
 
-<br> 
+<br>
+
+<h2>Stocks</h2>
+<table border="1">
+  <thead>
+    <tr>
+      <th>Logo</th>
+      <th>Company Name</th>
+      <th>Symbol</th>
+      <th>Market Cap</th>
+      <th>Price</th>
+      <th>Change</th>
+      <th>% Change</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @quotes.each do |quote| %>
+      <tr>
+        <td><img src="<%= quote[:logo] %>" alt="Company Logo" style="max-width: 100px; max-height: 100px;"></td>
+        <td><%= quote[:name] %></td>
+        <td><%= quote[:symbol] %></td>
+        <td><%= quote[:market_cap] %></td>
+        <td><%= quote[:price] %></td>
+        <td><%= quote[:change] %></td>
+        <td><%= quote[:percent_change] %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
 <%= button_to "Sign Out", destroy_user_session_path, method: :delete %>
-
-
-<%console%>
