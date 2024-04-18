@@ -1,5 +1,6 @@
 module Admin
     class TradersController < ApplicationController
+        # before_action :authorize_admin!
         before_action :set_trader, only: [:show, :edit, :update]
 
         # Get /admin/traders
@@ -74,6 +75,10 @@ module Admin
         end
 
         private
+
+        # def authorize_admin
+        #     redirect_to traders_path unless current_user.admin?
+        # end
 
         def set_trader
             @trader = User.find(params[:id])
