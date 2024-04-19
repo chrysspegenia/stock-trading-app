@@ -10,10 +10,6 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <%= yield %>
-  </body>
-
   <% if flash[:notice] %>
     <div>
       <%= flash[:notice] %>
@@ -25,5 +21,9 @@
       <%= flash[:alert] %>
     </div>
   <% end %>
+
+  <body>
+    <%= yield %>
+  </body>
 
 </html>

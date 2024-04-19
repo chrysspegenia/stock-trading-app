@@ -1,0 +1,73 @@
+<h1>Company Details</h1>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Company Symbol:</strong></td>
+      <td><%= @company.symbol %></td>
+      <td><strong>Logo:</strong></td>
+      <td><img src="<%= @logo.url %>" alt="Company Logo" style="max-width: 100px; max-height: 100px;"></td>
+    </tr>
+    <tr>
+      <td><strong>Company Name:</strong></td>
+      <td><%= @company.company_name %></td>
+      <td><strong>Industry:</strong></td>
+      <td><%= @company.industry %></td>
+    </tr>
+    <tr>
+      <td><strong>Website:</strong></td>
+      <td><%= @company.website %></td>
+      <td><strong>CEO:</strong></td>
+      <td><%= @company.ceo %></td>
+    </tr>
+    <tr>
+      <td><strong>Sector:</strong></td>
+      <td><%= @company.sector %></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+<div> <strong>Description:</strong>
+<%= @company.description %> </div>
+
+
+<h2>Buy</h2>
+<%= form_with(model: @transaction, url: buy_trader_path, method: :post) do |form| %>
+  <%= form.hidden_field :symbol, value: @company.symbol %>
+  <%= form.hidden_field :action, value: 'buy' %>
+
+  <div class="field">
+    <%= form.label :quantity %>
+    <%= form.number_field :quantity, min: 1, required: true %>
+  </div>
+
+  <div class="field">
+    <%= @quote.latest_price%>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Buy" %>
+  </div>
+<% end %>
+
+<h2>Sell</h2>
+<%= form_with(model: @transaction, url: sell_trader_path, method: :post) do |form| %>
+  <%= form.hidden_field :symbol, value: @company.symbol %>
+  <%= form.hidden_field :action, value: 'sell' %>
+
+  <div class="field">
+    <%= form.label :quantity %>
+    <%= form.number_field :quantity, min: 1, required: true %>
+  </div>
+
+  <div class="field">
+    <%= @quote.latest_price%>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Sell" %>
+  </div>
+<% end %>
+
+<div><%= link_to "Main", traders_path %></div>

@@ -16,8 +16,12 @@ Rails.application.routes.draw do
     resources :traders do
       get 'pendings', on: :collection
       post 'approve', on: :member
+      post 'initialize_balance', on: :collection
     end
   end
+
+  post 'buy', to: 'traders#buy', as: 'buy_trader'
+  post 'sell', to: 'traders#sell', as: 'sell_trader'
 
   #this route is only for creating initial admin
   patch 'grant_admin', to: 'admin/traders#grant_admin', as: 'grant_admin'
