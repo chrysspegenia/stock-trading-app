@@ -1,0 +1,30 @@
+<div class="main-custom-wrapper">
+  <div class="main-custom-container">
+
+    <span class="bg-animate"></span>
+    <span class="bg-animate2"></span>
+    
+    <div class="form-box login">
+      <%= turbo_frame_tag "login_form_frame", src: new_user_session_path do %>
+        <div class="form-content">Login form should be here.</div> <%# placeholder %>
+      <% end %>
+    </div>
+
+    <div class="info-text login">
+      <h2 class="animation" style="--i:0; --j:20;">Welcome To StockPulse!</h2>
+      <p class="animation" style="--i:1; --j:21;">Your gateway to financial opportunities.</p>
+    </div>
+
+    <div class="form-box register">
+      <%= turbo_frame_tag "registration_form_frame", src: new_user_registration_path do %>
+        <div class="form-content">Registration form should be here.</div> <%# placeholder %>
+      <% end %>
+    </div>
+    
+    <div class="info-text register">
+      <h2 class="animation" style="--i:17; --j:0;">Welcome To StockPulse!</h2>
+      <p class="animation" style="--i:18; --j:1;">Your gateway to financial opportunities.</p>
+    </div>
+
+  </div>
+</div>

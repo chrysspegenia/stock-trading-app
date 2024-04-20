@@ -1,26 +1,43 @@
-<h2>Log in</h2>
+<%= turbo_frame_tag "login_form_frame" do %>
+  
+  <h2 class="animation" style="--i:0; --j:21;">Login</h2>
+  
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="input-box animation" style="--i:1; --j:22;">
+      <%= f.text_field :email, autofocus: true, autocomplete: "email", required: true %>
+      <%= f.label :email %>
+      <i class='bx bxs-envelope'></i>
+    </div>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+    <div class="input-box animation" style="--i:2; --j:23;">
+      <%= f.password_field :password, autocomplete: "current-password", required: true %>
+      <%= f.label :password %>
+      <i class='bx bxs-lock-alt'></i>
+    </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+<%# commented out remember me %>
+  <%if false  %>
+    <% if devise_mapping.rememberable? %>
+      <div class="field">
+        <%= f.check_box :remember_me %>
+        <%= f.label :remember_me %>
+      </div>
+    <% end %>
+  <%end%>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+    <div class="actions">
+      <%# <%= f.submit "Log in" %>
+      <%= button_to "Login", session_path(resource), data: {turbo_frame: "_top"}, class: "form-btn animation", style:"--i:3; --j:24;"%>
     </div>
   <% end %>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
+  <div class="logreg-link animation" style="--i:4; --j:25;">
+    <p>Don't have an account?
+       <%#might not use the link to function and just add js %>
+      <%# <%= link_to "Sign up", new_user_registration_path, class:"register-link"%>
+      <span class="register-link">Sign Up</span>
+    </p>
   </div>
-<% end %>
 
-<%= render "users/shared/links" %>
+  <%# <%= render "users/shared/links" %>
+<% end %>
