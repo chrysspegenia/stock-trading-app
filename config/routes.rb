@@ -2,14 +2,17 @@ Rails.application.routes.draw do
   devise_for :users,
   controllers: {
     sessions: 'users/sessions',
-    registrations: 'users/registrations'
+    registrations: 'users/registrations',
+    confirmations: 'users/confirmations'
   }
 
-  devise_scope :user do
-    unauthenticated do
-      root to: 'users/sessions#new', as: :unauthenticated_root
-    end
-  end
+  # devise_scope :user do
+  #   unauthenticated do
+  #     root to: 'users/sessions#new', as: :unauthenticated_root
+  #   end
+  
+    
+  root to: 'users/custom_login_register_page#index', as: :root
 
   resources :traders
   namespace :admin do
