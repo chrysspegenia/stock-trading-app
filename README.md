@@ -23,7 +23,13 @@
 - [ ] I want to have a Transaction page to see and monitor all the transactions made by buying and selling stocks
 - [ ] I want to sell my stocks to gain money
 
+#### Gems used
+
+- [Boxicons](https://boxicons.com/usage)
+- [IEX Ruby Client - IEX Finance API](https://github.com/dblock/iex-ruby-client)
+
 #### Resouces
 
 - [Devise Wiki - Admin Role](https://github.com/heartcombo/devise/wiki/How-To:-Add-an-Admin-Role)
 - [Devise Wiki - Confirmable](https://github.com/heartcombo/devise/wiki/How-To:-Add-:confirmable-to-Users)
+- [Hotrails - TurboFrame & TurboStream](https://www.hotrails.dev/turbo-rails/turbo-frames-and-turbo-streams)
