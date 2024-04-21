@@ -1,45 +1,98 @@
-require 'iex-ruby-client'
-
 class TradersController < ApplicationController
-    SYMBOL_NAMES = ['AAPL', 'GOOGL', 'MSFT', 'META', 'AMZN', 'TSLA'].freeze
+    before_action :check_approval_status, only: [:buy_new, :buy, :sell_new, :sell]
+    helper_method :get_logo
+
 
     def index
         @trader = current_user
         # @stocks = current_user.stocks.all
         # @transactions = current_user.transactions.all
-        @quotes = get_quotes(SYMBOL_NAMES)
+        @quotes = iex_client.stock_market_list(:mostactive)
+    end
+
+    def show
+        @quote = iex_client.quote(params[:id])
+        @logo = iex_client.logo(params[:id])
+        @company = iex_client.company(params[:id])
+    end
+
+    def portfolio
+      @portfolio = current_user.stocks.all
+      @company = iex_client.company(params[:format])
+    end
+
+    def buy_new
+      @quote = iex_client.quote(params[:format])
+      @company = iex_client.company(params[:format])
+    end
+
+    def buy
+      symbol, quantity, action = params.values_at(:symbol, :quantity, :action)
+      quantity = quantity.to_i
+      price = BigDecimal(iex_client.quote(symbol).latest_price.to_s)
+      total_amount = quantity * price
+      stock = Stock.create_or_update_stock(symbol, current_user, iex_client)
+
+      if total_amount <= current_user.balance
+        transaction = Transaction.create_transaction(current_user, stock, quantity, price, action, total_amount)
+
+        if transaction.save
+          Stock.update_quantity(stock, quantity, price)
+          User.update_balance(current_user, action, total_amount)
+          flash[:notice] = 'Transaction created successfully.'
+        else
+          flash[:alert] = 'Transaction failed to save.'
+        end
+      else
+        flash[:alert] = 'Insufficient balance to make the purchase.'
+      end
+
+      redirect_to traders_path
+    end
+
+    def sell_new
+      @quote = iex_client.quote(params[:format])
+      @company = iex_client.company(params[:format])
+    end
+
+    def sell
+      symbol, quantity, action = params.values_at(:symbol, :quantity, :action)
+      quantity = quantity.to_i
+      price = BigDecimal(iex_client.quote(symbol).latest_price.to_s)
+      total_amount = quantity * price
+      stock = Stock.find_by(symbol: symbol, user_id: current_user.id)
+
+      if stock && stock.shares >= quantity
+        transaction = Transaction.create_transaction(current_user, stock, quantity, price, action, total_amount)
+
+        if transaction.save
+          Stock.update_quantity(stock, -quantity, price)
+          User.update_balance(current_user, action, total_amount)
+          flash[:notice] = 'Transaction created successfully.'
+        else
+          flash[:alert] = 'Transaction failed to save.'
+        end
+      else
+        flash[:alert] = 'Insufficient quantity of shares to sell.'
+      end
+
+      redirect_to traders_path
     end
 
     private
 
-    def initialize_iex_client
+    def iex_client
        @iex_client ||= IEX::Api::Client.new
     end
 
-    def get_quotes(symbols)
-        logos = get_logos(symbols)
-        quotes = symbols.map { |symbol| initialize_iex_client.quote(symbol) }
-
-        quotes.map do |quote|
-          logo = logos[quote.symbol]
-          {
-            logo: logo,
-            name: quote.company_name,
-            symbol: quote.symbol,
-            market_cap: quote.market_cap,
-            price: quote.latest_price,
-            change: quote.change,
-            percent_change: quote.change_percent
-          }
-        end
+    def get_logo(symbol)
+      iex_client.logo(symbol).url
     end
 
-    def get_logos(symbols)
-      logos = {}
-      symbols.each do |symbol|
-        logo = initialize_iex_client.logo(symbol)
-        logos[symbol] = logo.url if logo.present?
+    def check_approval_status
+      unless current_user.approved?
+        flash[:alert] = 'You are not approved to perform this action.'
+        redirect_to traders_path
       end
-      logos
     end
-end
+  end

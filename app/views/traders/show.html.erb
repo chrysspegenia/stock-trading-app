@@ -1,0 +1,34 @@
+<h1>Company Details</h1>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Company Symbol:</strong></td>
+      <td><%= @company.symbol %></td>
+      <td><strong>Logo:</strong></td>
+      <td><img src="<%= @logo.url %>" alt="Company Logo" style="max-width: 100px; max-height: 100px;"></td>
+    </tr>
+    <tr>
+      <td><strong>Company Name:</strong></td>
+      <td><%= @company.company_name %></td>
+      <td><strong>Industry:</strong></td>
+      <td><%= @company.industry %></td>
+    </tr>
+    <tr>
+      <td><strong>Website:</strong></td>
+      <td><%= @company.website %></td>
+      <td><strong>CEO:</strong></td>
+      <td><%= @company.ceo %></td>
+    </tr>
+    <tr>
+      <td><strong>Sector:</strong></td>
+      <td><%= @company.sector %></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+<div> <strong>Description:</strong>
+<%= @company.description %> </div>
+
+<div><%= link_to "Main", traders_path %></div>
