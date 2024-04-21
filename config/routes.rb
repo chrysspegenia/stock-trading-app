@@ -20,8 +20,11 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'buy_new', to: 'traders#buy_new', as: 'buy_new_trader'
   post 'buy', to: 'traders#buy', as: 'buy_trader'
+  get 'sell', to: 'traders#sell_new', as: 'sell_new_trader'
   post 'sell', to: 'traders#sell', as: 'sell_trader'
+  get 'portfolio', to: 'traders#portfolio', as: 'portfolio_trader'
 
   #this route is only for creating initial admin
   patch 'grant_admin', to: 'admin/traders#grant_admin', as: 'grant_admin'

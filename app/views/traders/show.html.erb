@@ -31,43 +31,4 @@
 <div> <strong>Description:</strong>
 <%= @company.description %> </div>
 
-
-<h2>Buy</h2>
-<%= form_with(model: @transaction, url: buy_trader_path, method: :post) do |form| %>
-  <%= form.hidden_field :symbol, value: @company.symbol %>
-  <%= form.hidden_field :action, value: 'buy' %>
-
-  <div class="field">
-    <%= form.label :quantity %>
-    <%= form.number_field :quantity, min: 1, required: true %>
-  </div>
-
-  <div class="field">
-    <%= @quote.latest_price%>
-  </div>
-
-  <div class="actions">
-    <%= form.submit "Buy" %>
-  </div>
-<% end %>
-
-<h2>Sell</h2>
-<%= form_with(model: @transaction, url: sell_trader_path, method: :post) do |form| %>
-  <%= form.hidden_field :symbol, value: @company.symbol %>
-  <%= form.hidden_field :action, value: 'sell' %>
-
-  <div class="field">
-    <%= form.label :quantity %>
-    <%= form.number_field :quantity, min: 1, required: true %>
-  </div>
-
-  <div class="field">
-    <%= @quote.latest_price%>
-  </div>
-
-  <div class="actions">
-    <%= form.submit "Sell" %>
-  </div>
-<% end %>
-
 <div><%= link_to "Main", traders_path %></div>

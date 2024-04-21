@@ -26,16 +26,21 @@
   </thead>
   <tbody>
     <% cache('quotes_table', expires_in: 1.hour) do %>
-      <% @quotes.zip(@logos).each do |quote, logo| %>
+      <% @quotes.each do |quote| %>
         <tr>
-          <td><img src="<%= logo %>" alt="Company Logo" style="max-width: 100px; max-height: 100px;"></td>
+          <td><img src="<%= get_logo(quote.symbol) %>" alt="Company Logo" style="max-width: 100px; max-height: 100px;"></td>
           <td><%= quote.company_name %></td>
           <td><%= quote.symbol %></td>
           <td><%= quote.market_cap %></td>
           <td><%= quote.latest_price %></td>
           <td><%= quote.change %></td>
           <td><%= quote.change_percent %></td>
-          <td><%= link_to "View", trader_path(quote.symbol) %></td>
+          <td><%= link_to "View", trader_path(quote.symbol) %>
+              |
+              <%= link_to "Buy", buy_new_trader_path(quote.symbol) %>
+              |
+              <%= link_to "Sell", sell_new_trader_path(quote.symbol) %>
+              </td>
         </tr>
       <% end %>
     <% end %>

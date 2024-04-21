@@ -1,27 +1,37 @@
 class TradersController < ApplicationController
-    SYMBOL_NAMES = ['AAPL', 'GOOGL', 'MSFT', 'META', 'AMZN', 'TSLA'].freeze
-    before_action :check_approval_status, only: [:buy, :sell]
+    before_action :check_approval_status, only: [:buy_new, :buy, :sell_new, :sell]
+    helper_method :get_logo
+
 
     def index
         @trader = current_user
         # @stocks = current_user.stocks.all
         # @transactions = current_user.transactions.all
-        @quotes = get_quotes(SYMBOL_NAMES)
-        @logos = get_logos(SYMBOL_NAMES)
+        @quotes = iex_client.stock_market_list(:mostactive)
     end
 
     def show
-        @quote = initialize_iex_client.quote(params[:id])
-        @logo = initialize_iex_client.logo(params[:id])
-        @company = initialize_iex_client.company(params[:id])
+        @quote = iex_client.quote(params[:id])
+        @logo = iex_client.logo(params[:id])
+        @company = iex_client.company(params[:id])
+    end
+
+    def portfolio
+      @portfolio = current_user.stocks.all
+      @company = iex_client.company(params[:format])
+    end
+
+    def buy_new
+      @quote = iex_client.quote(params[:format])
+      @company = iex_client.company(params[:format])
     end
 
     def buy
       symbol, quantity, action = params.values_at(:symbol, :quantity, :action)
       quantity = quantity.to_i
-      price = BigDecimal(initialize_iex_client.quote(symbol).latest_price.to_s)
+      price = BigDecimal(iex_client.quote(symbol).latest_price.to_s)
       total_amount = quantity * price
-      stock = Stock.create_or_update_stock(symbol, current_user, initialize_iex_client)
+      stock = Stock.create_or_update_stock(symbol, current_user, iex_client)
 
       if total_amount <= current_user.balance
         transaction = Transaction.create_transaction(current_user, stock, quantity, price, action, total_amount)
@@ -40,10 +50,15 @@ class TradersController < ApplicationController
       redirect_to traders_path
     end
 
+    def sell_new
+      @quote = iex_client.quote(params[:format])
+      @company = iex_client.company(params[:format])
+    end
+
     def sell
       symbol, quantity, action = params.values_at(:symbol, :quantity, :action)
       quantity = quantity.to_i
-      price = BigDecimal(initialize_iex_client.quote(symbol).latest_price.to_s)
+      price = BigDecimal(iex_client.quote(symbol).latest_price.to_s)
       total_amount = quantity * price
       stock = Stock.find_by(symbol: symbol, user_id: current_user.id)
 
@@ -66,16 +81,12 @@ class TradersController < ApplicationController
 
     private
 
-    def initialize_iex_client
+    def iex_client
        @iex_client ||= IEX::Api::Client.new
     end
 
-    def get_quotes(symbols)
-       symbols.map { |symbol| initialize_iex_client.quote(symbol) }
-    end
-
-    def get_logos(symbols)
-       symbols.map { |symbol| initialize_iex_client.logo(symbol)&.url }.compact
+    def get_logo(symbol)
+      iex_client.logo(symbol).url
     end
 
     def check_approval_status
