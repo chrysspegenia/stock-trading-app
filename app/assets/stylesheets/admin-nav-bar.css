@@ -1,0 +1,86 @@
+.admin-navbar {
+  border: 2px solid #0ef;
+  border-radius: 5px;
+  height: 60vh;
+  top: 5em;
+  position: sticky;
+  padding: 1em 0;
+  background: #0d2d42;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.admin-navbar-routes {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.nav-item {
+  font-size: 1.2rem;
+  text-decoration: none;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: 0.5s;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+}
+
+.nav-item:hover {
+  background: #0ef;
+  color: #1a5276;
+}
+
+.admin-navbar .bx {
+  font-size: 25px;
+}
+
+.admin-account-btns {
+  width: 100%;
+}
+
+.logout-btn {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: #0ef;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.logout-btn:hover {
+  background: #f0a500;
+}
+
+/* .logout-btn::before {
+  content: "";
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 300%;
+  background: linear-gradient(#081b29, #0ef, #081b29, #0ef);
+  z-index: -1;
+  transition: 0.5s;
+  z-index: -1;
+}
+
+.logout-btn:hover::before {
+  top: 0;
+} */
+
+.admin-navbar .nav-item-text {
+  display: none;
+}
+
+.admin-navbar .nav-item-text.active {
+  display: block;
+}
