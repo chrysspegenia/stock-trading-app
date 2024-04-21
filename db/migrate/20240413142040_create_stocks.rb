@@ -4,7 +4,7 @@ class CreateStocks < ActiveRecord::Migration[7.1]
       t.string :symbol
       t.string :name
       t.decimal :price, precision: 10, scale: 2
-      t.integer :shares
+      t.integer :shares, default: 0.0
       t.references :user, null: false, foreign_key: true
 
       t.timestamps

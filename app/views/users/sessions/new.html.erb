@@ -1,7 +1,7 @@
 <%= turbo_frame_tag "login_form_frame" do %>
-  
+
   <h2 class="animation" style="--i:0; --j:21;">Login</h2>
-  
+
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="input-box animation" style="--i:1; --j:22;">
       <%= f.text_field :email, autofocus: true, autocomplete: "email", required: true %>

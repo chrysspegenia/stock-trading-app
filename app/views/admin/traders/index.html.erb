@@ -32,6 +32,19 @@
   <% end %>
 </ul>
 
+<h2>Initialize Balance</h2>
+<% @traders.each do |trader| %>
+  <%= form_with url: initialize_balance_admin_traders_path(trader), method: :post do |f| %>
+    <%= f.hidden_field :user_id, value: trader.id %>
+    <div>
+      <%= trader.first_name%> <%= trader.last_name%> <%= trader.email %> Init. Bal.: <%= trader.balance %>
+      <%= f.label :initial_balance, "Initial Balance:" %>
+      <%= f.number_field :initial_balance, step: 'any' %>
+      <%= f.submit "Initialize Balance" %>
+    </div>
+  <% end %>
+<% end %>
+
 <%# this method is only for creating initial admin %>
 <%= button_to "Grant Admin", grant_admin_path, method: :patch, data: { confirm: "Are you sure you want to grant admin status to this user?" } %>
 

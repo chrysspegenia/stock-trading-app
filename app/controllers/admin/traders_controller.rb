@@ -38,6 +38,20 @@ module Admin
             redirect_to admin_traders_path
         end
 
+        def initialize_balance
+            trader = User.find(params[:user_id])
+            initial_balance = BigDecimal(params[:initial_balance])
+
+
+            if trader.update(balance: initial_balance)
+                flash[:notice] = "Balance initialized successfully."
+            else
+                flash[:alert] = "Failed to initialize balance."
+            end
+
+            redirect_to admin_traders_path
+        end
+
         #GET /admin/traders/:id
         def show
         end
