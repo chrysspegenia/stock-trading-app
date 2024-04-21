@@ -18,7 +18,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_18_142906) do
     t.string "symbol"
     t.string "name"
     t.decimal "price", precision: 10, scale: 2
-    t.integer "shares", default: 0
+    t.integer "shares"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

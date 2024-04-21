@@ -35,3 +35,10 @@
 - [Devise Wiki - Confirmable](https://github.com/heartcombo/devise/wiki/How-To:-Add-:confirmable-to-Users)
 - [Hotrails - TurboFrame & TurboStream](https://www.hotrails.dev/turbo-rails/turbo-frames-and-turbo-streams)
 - [Action Mailer Configuration](https://guides.rubyonrails.org/action_mailer_basics.html#action-mailer-configuration)
+
+## Problems and solutions
+
+- [Devise redirect after login fail](https://stackoverflow.com/questions/5832631/devise-redirect-after-login-fail)
+  --Modify devise route when input invalid credentials
+- [Devise redirect on sign up failure](https://stackoverflow.com/questions/6240141/devise-redirect-on-sign-up-failure?rq=3)
+  --Modify devise route upon invalid registration

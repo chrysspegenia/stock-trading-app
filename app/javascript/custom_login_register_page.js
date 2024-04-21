@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("turbo:load", () => {
   const wrapper = document.querySelector(".main-custom-wrapper");
 
   wrapper.addEventListener("click", (event) => {
