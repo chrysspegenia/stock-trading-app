@@ -34,4 +34,4 @@
 - [Devise Wiki - Admin Role](https://github.com/heartcombo/devise/wiki/How-To:-Add-an-Admin-Role)
 - [Devise Wiki - Confirmable](https://github.com/heartcombo/devise/wiki/How-To:-Add-:confirmable-to-Users)
 - [Hotrails - TurboFrame & TurboStream](https://www.hotrails.dev/turbo-rails/turbo-frames-and-turbo-streams)
-- [Action Mailer Configuration] (https://guides.rubyonrails.org/action_mailer_basics.html#action-mailer-configuration)
+- [Action Mailer Configuration](https://guides.rubyonrails.org/action_mailer_basics.html#action-mailer-configuration)
