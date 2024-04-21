@@ -1,0 +1,33 @@
+<h1>All Transactions</h1>
+
+<div>
+  <label> User Name: </label> <%= @trader.first_name %> <%= @trader.last_name %>
+  <label> User Wallet: </label> <%= @trader.balance %>
+</div>
+
+<table border="1">
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Time</th>
+      <th>Quantity</th>
+      <th>Price</th>
+      <th>Action</th>
+      <th>Total Amount</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @transactions.each do |transaction| %>
+      <tr>
+        <td><%= transaction.created_at.to_date %></td>
+        <td><%= transaction.created_at.strftime('%H:%M:%S') %></td>
+        <td><%= transaction.quantity %></td>
+        <td>$<%= transaction.price %></td>
+        <td><%= transaction.action %></td>
+        <td>$<%= transaction.total_amount %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div><%= link_to "Main", traders_path %></div>

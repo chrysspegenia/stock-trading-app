@@ -8,11 +8,9 @@
     <%= form.number_field :quantity, min: 1, required: true %>
   </div>
 
-  <div class="field">
-    <%= @quote.latest_price%>
-  </div>
-
   <div class="actions">
     <%= form.submit "Sell" %>
   </div>
 <% end %>
+
+<div><%= link_to "Main", traders_path %></div>

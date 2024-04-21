@@ -1,0 +1,37 @@
+<h1>Portfolio</h1>
+
+<div>
+  <label> User Name: </label> <%= @trader.first_name %> <%= @trader.last_name %>
+  <label> User Wallet: </label> <%= @trader.balance %>
+</div>
+
+<table border="1">
+  <thead>
+    <tr>
+      <th>Symbol</th>
+      <th>Company Name</th>
+      <th>Buying Price</th>
+      <th>Current Price</th>
+      <th>Price Per Share</th>
+      <th>Current Value</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @stocks.each do |stock| %>
+      <tr>
+        <td><%= stock.symbol %></td>
+        <td><%= stock.name %></td>
+        <td>$<%= stock.price %></td>
+        <td>$<%= stock.latest_price %></td>
+        <td>$<%= stock.price_per_share %></td>
+        <td>$<%= stock.current_value %></td>
+        <td> <%= link_to "Buy", buy_new_trader_path(stock.symbol) %>
+        |
+        <%= link_to "Sell", sell_new_trader_path(stock.symbol) %> </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div><%= link_to "Main", traders_path %></div>

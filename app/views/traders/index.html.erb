@@ -38,14 +38,15 @@
           <td><%= link_to "View", trader_path(quote.symbol) %>
               |
               <%= link_to "Buy", buy_new_trader_path(quote.symbol) %>
-              |
-              <%= link_to "Sell", sell_new_trader_path(quote.symbol) %>
               </td>
         </tr>
       <% end %>
     <% end %>
   </tbody>
 </table>
+
+<%= link_to "My Portfolio", portfolio_trader_path %>
+<%= link_to "All Transactions", transaction_trader_path %>
 
 <%= button_to "Sign Out", destroy_user_session_path, method: :delete %>
 

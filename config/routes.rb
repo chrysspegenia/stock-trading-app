@@ -10,8 +10,8 @@ Rails.application.routes.draw do
   #   unauthenticated do
   #     root to: 'users/sessions#new', as: :unauthenticated_root
   #   end
-  
-    
+
+
   root to: 'users/custom_login_register_page#index', as: :root
 
   resources :traders
@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   get 'sell', to: 'traders#sell_new', as: 'sell_new_trader'
   post 'sell', to: 'traders#sell', as: 'sell_trader'
   get 'portfolio', to: 'traders#portfolio', as: 'portfolio_trader'
+  get 'transaction', to: 'traders#transaction', as: 'transaction_trader'
 
   #this route is only for creating initial admin
   patch 'grant_admin', to: 'admin/traders#grant_admin', as: 'grant_admin'

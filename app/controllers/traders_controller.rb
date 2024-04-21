@@ -1,24 +1,26 @@
 class TradersController < ApplicationController
-    before_action :check_approval_status, only: [:buy_new, :buy, :sell_new, :sell]
-    helper_method :get_logo
+    before_action :check_approval_status, only: [:buy_new, :buy, :sell_new, :sell, :portfolio, :transaction]
+    helper_method :get_logo, :iex_client
 
 
     def index
         @trader = current_user
-        # @stocks = current_user.stocks.all
-        # @transactions = current_user.transactions.all
         @quotes = iex_client.stock_market_list(:mostactive)
     end
 
     def show
         @quote = iex_client.quote(params[:id])
         @logo = iex_client.logo(params[:id])
-        @company = iex_client.company(params[:id])
     end
 
     def portfolio
-      @portfolio = current_user.stocks.all
-      @company = iex_client.company(params[:format])
+      @trader = current_user
+      @stocks = current_user.stocks.all
+    end
+
+    def transaction
+      @trader = current_user
+      @transactions = current_user.transactions.all
     end
 
     def buy_new
