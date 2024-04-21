@@ -1,40 +1,43 @@
-<h2>Sign up</h2>
+<div class="admin-form-container">
+  <h2>Create an account</h2>
 
-<%= form_for(@trader, url: admin_traders_path(@trader), method: :post) do |f| %>
-  <%# <%= render "users/shared/error_messages", resource: resource %>
+  <div class="admin-form-box">
+    <%= form_for(@trader, url: admin_traders_path(@trader), method: :post) do |f| %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      <div class="input-box">
+        <%= f.text_field :email, autofocus: true, autocomplete: "email", required: true %>
+        <%= f.label :email %>
+        <i class='bx bxs-envelope'></i>
+      </div>
+
+      <div class="input-box">
+        <%= f.text_field :first_name, autofocus: true, required: true %>
+        <%= f.label :first_name %>
+        <i class='bx bxs-user'></i>
+      </div>
+
+      <div class="input-box">
+        <%= f.text_field :last_name, autofocus: true, required: true %>
+        <%= f.label :last_name %>
+        <i class='bx bxs-user'></i>
+      </div>
+
+      <div class="input-box">
+        <%= f.password_field :password, autocomplete: "new-password", required: true %>
+        <%= f.label :password %>
+        <i class='bx bxs-lock-alt'></i>
+      </div>
+
+      <div class="input-box">
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true %>
+        <%= f.label :password_confirmation %>
+        <i class='bx bxs-lock-alt'></i>
+      </div>
+
+      <div class="logreg-link">
+        <%# <%= f.submit "Sign up", class: "form-btn" %>
+        <%= button_to "Sign up", new_registration_path(@trader), data: {turbo_frame: "_top"}, class: "form-btn animation" %>
+      </div>
+    <% end %>
   </div>
-
-  <div class="field">
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-
-<%= link_to "Back to dashboard", admin_traders_path %>
+</div>
