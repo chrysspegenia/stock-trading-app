@@ -1,34 +1,50 @@
 <section class="pending-traders-wrapper">
-  <header class="pending-header">
+  <header class="list-header">
     <h2>Pending Accounts</h2>
-    <span class="pending-length"><%= @pending_traders.length %></span>
-    <i id="toggle-list" class='bx bx-expand-vertical'></i>
+    <span><%= @pending_traders.length %></span>
+    <i id="pending-toggle-list" class='bx bx-expand-vertical'></i>
   </header>
 
   <ul class="pending-traders-list">
     <% @pending_traders.each do |trader| %>
-      <li class="pending-trader">
+      <li class="trader">
         <span><%= trader.id %></span>
         <span><%= trader.first_name%> <%= trader.last_name%></span>
         <span><%= trader.email %></span>
-        <%= button_to "Approve account", approve_admin_trader_path(trader), method: :post %>
+        <%= button_to "Approve account", approve_admin_trader_path(trader), method: :post, class: "approve-btn" %>
       </li>
     <% end %>
   </ul>
 </section>
 
-<h2>All Approved Traders</h2>
+<section class="approved-traders-wrapper">
+  <header class="list-header">
+      <h2>Trader Accounts</h2>
+      <span><%= @traders.length %></span>
+      <i id="approved-toggle-list" class='bx bx-expand-vertical'></i>
+  </header>
+  <div class="trader approved-list-header">
+    <span>Account ID</span>
+    <span>Name</span>
+    <span>Email</span>
+    <span>Balance</span>
+    <span>Button</span>  
+  </div>
 
-<ul>
-  <% @traders.each do |trader| %>
-    <li style="display:flex">
-      <div><%= trader.first_name%> <%= trader.last_name%> <%= trader.email %></div>
-      <%= link_to "Show", admin_trader_path(trader) %>
-      <%# <%= link_to "Edit", edit_admin_trader_path(trader) %>
-      <%= button_to "Revoke", approve_admin_trader_path(trader), method: :post %>
-    </li>
-  <% end %>
-</ul>
+  <ul class="approved-traders-list">
+    <% @traders.each do |trader| %>
+      <li class="trader">
+        <%= link_to(admin_trader_path(trader), class: "approved-trader-link") do %>
+          <span><%= trader.id %></span>
+          <span><%= trader.first_name%> <%= trader.last_name%></span>
+          <span><%= trader.email %></span>
+          <span><%= trader.balance %></span>
+        <% end %>
+        <%= button_to "Revoke account", approve_admin_trader_path(trader), method: :post, class: "revoke-btn" %>
+      </li>
+    <% end %>
+  </ul>
+</section>
 
 <h2>Initialize Balance</h2>
 <% @traders.each do |trader| %>

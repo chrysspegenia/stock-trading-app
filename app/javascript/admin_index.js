@@ -1,22 +1,35 @@
 document.addEventListener("turbo:load", function () {
-  var header = document.getElementById("toggle-list");
-  var list = document.querySelector(".pending-traders-list");
+  // Toggle pending traders list
+  var pendingHeader = document.getElementById("pending-toggle-list");
+  var pendingList = document.querySelector(".pending-traders-list");
+  var isPendingHidden = localStorage.getItem("pendingListHidden") === "true";
 
-  // Retrieve the state from local storage
-  var isHidden = localStorage.getItem("pendingListHidden") === "true";
-
-  // Set initial visibility based on the stored state
-  if (isHidden) {
-    list.classList.add("hidden");
+  if (isPendingHidden) {
+    pendingList.classList.add("hidden");
   }
 
-  // Toggle the 'hidden' class and update local storage when clicking the header
-  header.addEventListener("click", function () {
-    list.classList.toggle("hidden");
-    // Update local storage with the current state
+  pendingHeader.addEventListener("click", function () {
+    pendingList.classList.toggle("hidden");
     localStorage.setItem(
       "pendingListHidden",
-      list.classList.contains("hidden")
+      pendingList.classList.contains("hidden")
+    );
+  });
+
+  // Toggle approved traders list
+  var approvedHeader = document.getElementById("approved-toggle-list");
+  var approvedList = document.querySelector(".approved-traders-list");
+  var isApprovedHidden = localStorage.getItem("approvedListHidden") === "true";
+
+  if (isApprovedHidden) {
+    approvedList.classList.add("hidden");
+  }
+
+  approvedHeader.addEventListener("click", function () {
+    approvedList.classList.toggle("hidden");
+    localStorage.setItem(
+      "approvedListHidden",
+      approvedList.classList.contains("hidden")
     );
   });
 });
