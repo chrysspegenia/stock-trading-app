@@ -63,6 +63,7 @@ module Admin
 
         #GET /admin/traders/:id
         def show
+            @transactions = Transaction.where(user_id: @trader.id).order(id: :desc)
         end
 
         #GET /admin/traders/new
