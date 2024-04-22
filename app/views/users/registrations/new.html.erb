@@ -2,35 +2,35 @@
 
   <h2 class="animation" style="--i:17; --j:0;">Sign Up</h2>
 
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { id: "registration_form" }) do |f| %>
     <%= render "users/shared/error_messages", resource: resource %>
 
     <div class="input-box animation" style="--i:18; --j:1;">
-      <%= f.text_field :email, autofocus: true, autocomplete: "email", required: true %>
+      <%= f.text_field :email, id: "registration_email", autofocus: true, autocomplete: "email", required: true %>
       <%= f.label :email %>
       <i class='bx bxs-envelope'></i>
     </div>
 
     <div class="input-box animation" style="--i:19; --j:2;">
-      <%= f.text_field :first_name, autofocus: true, required: true %>
+      <%= f.text_field :first_name, id: "registration_first_name", autofocus: true, required: true %>
       <%= f.label :first_name %>
       <i class='bx bxs-user'></i>
     </div>
 
     <div class="input-box animation" style="--i:20; --j:3;">
-      <%= f.text_field :last_name, autofocus: true, required: true %>
+      <%= f.text_field :last_name, id: "registration_last_name", autofocus: true, required: true %>
       <%= f.label :last_name %>
       <i class='bx bxs-user'></i>
     </div>
 
     <div class="input-box animation" style="--i:21; --j:4;">
-      <%= f.password_field :password, autocomplete: "new-password", required: true %>
+      <%= f.password_field :password, id: "registration_password", autocomplete: "new-password", required: true %>
       <%= f.label :password %>
       <i class='bx bxs-lock-alt'></i>
     </div>
 
     <div class="input-box animation" style="--i:22; --j:5;">
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true %>
+      <%= f.password_field :password_confirmation, id: "registration_password_confirm", autocomplete: "new-password", required: true %>
       <%= f.label :password_confirmation %>
       <i class='bx bxs-lock-alt'></i>
     </div>

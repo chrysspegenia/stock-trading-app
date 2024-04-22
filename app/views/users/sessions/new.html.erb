@@ -2,15 +2,15 @@
 
   <h2 class="animation" style="--i:0; --j:21;">Login</h2>
 
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { id: "login_form" }) do |f| %>
     <div class="input-box animation" style="--i:1; --j:22;">
-      <%= f.text_field :email, autofocus: true, autocomplete: "email", required: true %>
+      <%= f.text_field :email, id: "login_user_email", autofocus: true, autocomplete: "email", required: true %>
       <%= f.label :email %>
       <i class='bx bxs-envelope'></i>
     </div>
 
     <div class="input-box animation" style="--i:2; --j:23;">
-      <%= f.password_field :password, autocomplete: "current-password", required: true %>
+      <%= f.password_field :password, id: "login_user_password", autocomplete: "current-password", required: true %>
       <%= f.label :password %>
       <i class='bx bxs-lock-alt'></i>
     </div>
