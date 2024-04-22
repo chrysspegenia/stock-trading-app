@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       get 'pendings', on: :collection
       post 'approve', on: :member
       post 'initialize_balance', on: :collection
+      get 'transaction', on: :collection
     end
   end
 

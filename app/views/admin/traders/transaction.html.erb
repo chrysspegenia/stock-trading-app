@@ -1,15 +1,11 @@
 <h1>All Transactions</h1>
 
-<div>
-  <label> User Name: </label> <%= @trader.first_name %> <%= @trader.last_name %>
-  <label> User Wallet: </label> <%= @trader.balance %>
-</div>
-
 <table border="1">
   <thead>
     <tr>
       <th>Date</th>
       <th>Time</th>
+      <th>Account Name</th>
       <th>Symbol</th>
       <th>Name</th>
       <th>Quantity</th>
@@ -23,6 +19,7 @@
       <tr>
         <td><%= transaction.created_at.to_date %></td>
         <td><%= transaction.created_at.strftime('%H:%M:%S') %></td>
+        <td><%= transaction.user.first_name %> <%= transaction.user.last_name %></td>
         <td><%= transaction.stock.symbol %></td>
         <td><%= transaction.stock.name %></td>
         <td><%= transaction.quantity %></td>
@@ -33,5 +30,3 @@
     <% end %>
   </tbody>
 </table>
-
-<div><%= link_to "Main", traders_path %></div>

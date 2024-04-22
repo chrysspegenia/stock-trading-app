@@ -62,4 +62,6 @@
 <%# this method is only for creating initial admin %>
 <%= button_to "Grant Admin", grant_admin_path, method: :patch, data: { confirm: "Are you sure you want to grant admin status to this user?" } %>
 
+<%= link_to "All Transactions", transaction_admin_traders_path %>
+
 <%= button_to "Sign Out", destroy_user_session_path, method: :delete %>
