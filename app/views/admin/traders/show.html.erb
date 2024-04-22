@@ -18,3 +18,33 @@
     <% end %>
 
 </main>
+
+<section class="transaction-list-wrapper">
+    <header class="transaction-list-headers">
+        <span>Stock Symbol</span>
+        <span>Stock Name</span>
+        <span>Action</span>
+        <span>Quantity</span>
+        <span>Price(USD)</span>
+        <span>Total Amount(USD)</span>
+        <span>Date</span>
+        <span>Time</span>
+    </header>
+
+    <ul class="transactions-list">
+        <% @transactions.each do |transaction| %>
+            <li class="transaction">
+                <span><%= transaction.stock.symbol %></span>
+                <span><%= transaction.stock.name %></span>
+                <span class="<%= transaction.action == 'buy' ? 'buy' : 'sell' %>">
+                        <%= transaction.action %>
+                </span>
+                <span><%= transaction.quantity %></span>
+                <span><%= transaction.price %></span>
+                <span><%= transaction.total_amount %></span>
+                <span><%= transaction.created_at.to_date %></span>
+                <span><%= transaction.created_at.strftime('%H:%M:%S') %></span>
+            </li>
+        <% end %>
+    </ul>
+</section>
