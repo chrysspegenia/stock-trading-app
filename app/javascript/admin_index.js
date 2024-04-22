@@ -1,35 +1,44 @@
 document.addEventListener("turbo:load", function () {
-  // Toggle pending traders list
-  var pendingHeader = document.getElementById("pending-toggle-list");
-  var pendingList = document.querySelector(".pending-traders-list");
-  var isPendingHidden = localStorage.getItem("pendingListHidden") === "true";
+  // Function to toggle list visibility and update local storage
+  function toggleListVisibility(
+    wrapperSelector,
+    toggleId,
+    listSelector,
+    storageKey
+  ) {
+    let wrapper = document.querySelector(wrapperSelector);
+    if (wrapper) {
+      let list = wrapper.querySelector(listSelector);
+      if (list) {
+        let isHidden = localStorage.getItem(storageKey) === "true";
+        if (isHidden) {
+          list.classList.add("hidden");
+        }
 
-  if (isPendingHidden) {
-    pendingList.classList.add("hidden");
+        let toggle = wrapper.querySelector(`#${toggleId}`);
+        if (toggle) {
+          toggle.addEventListener("click", function () {
+            list.classList.toggle("hidden");
+            localStorage.setItem(storageKey, list.classList.contains("hidden"));
+          });
+        }
+      }
+    }
   }
 
-  pendingHeader.addEventListener("click", function () {
-    pendingList.classList.toggle("hidden");
-    localStorage.setItem(
-      "pendingListHidden",
-      pendingList.classList.contains("hidden")
-    );
-  });
+  // Toggle pending traders list
+  toggleListVisibility(
+    ".pending-traders-wrapper",
+    "pending-toggle-list",
+    ".pending-traders-list",
+    "pendingListHidden"
+  );
 
   // Toggle approved traders list
-  var approvedHeader = document.getElementById("approved-toggle-list");
-  var approvedList = document.querySelector(".approved-traders-list");
-  var isApprovedHidden = localStorage.getItem("approvedListHidden") === "true";
-
-  if (isApprovedHidden) {
-    approvedList.classList.add("hidden");
-  }
-
-  approvedHeader.addEventListener("click", function () {
-    approvedList.classList.toggle("hidden");
-    localStorage.setItem(
-      "approvedListHidden",
-      approvedList.classList.contains("hidden")
-    );
-  });
+  toggleListVisibility(
+    ".approved-traders-wrapper",
+    "approved-toggle-list",
+    ".approved-traders-list",
+    "approvedListHidden"
+  );
 });
