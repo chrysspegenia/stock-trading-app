@@ -1,23 +1,21 @@
-<h1>This is the admin page</h1>
+<section class="pending-traders-wrapper">
+  <header class="pending-header">
+    <h2>Pending Accounts</h2>
+    <span class="pending-length"><%= @pending_traders.length %></span>
+    <i id="toggle-list" class='bx bx-expand-vertical'></i>
+  </header>
 
-<%# make notice into an alert form %>
-<p style="color:green"><%= notice %></p>
-
-
-<%= link_to "Create a trader account", new_admin_trader_path %>
-
-<h2>All Pending Traders</h2>
-
-<%# <% if false #comment out code block until the end block %>
-<ul>
-  <% @pending_traders.each do |trader| %>
-    <li style="display:flex">
-      <div><%= trader.first_name%> <%= trader.last_name%> <%= trader.email %></div>
-      <%= button_to "Approve", approve_admin_trader_path(trader), method: :post %>
-    </li>
-  <% end %>
-</ul>
-<%# <%end %>
+  <ul class="pending-traders-list">
+    <% @pending_traders.each do |trader| %>
+      <li class="pending-trader">
+        <span><%= trader.id %></span>
+        <span><%= trader.first_name%> <%= trader.last_name%></span>
+        <span><%= trader.email %></span>
+        <%= button_to "Approve account", approve_admin_trader_path(trader), method: :post %>
+      </li>
+    <% end %>
+  </ul>
+</section>
 
 <h2>All Approved Traders</h2>
 
