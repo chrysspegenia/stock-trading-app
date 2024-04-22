@@ -54,7 +54,7 @@ module Admin
 
         def transaction
             if current_user.admin?
-              @transactions = Transaction.all.order(desc: :id)
+              @transactions = Transaction.all.order(id: :desc)
             else
               flash[:notice] = "Only admin users can access this feature."
               redirect_to root_path
