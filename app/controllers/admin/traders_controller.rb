@@ -51,6 +51,15 @@ module Admin
             redirect_to admin_traders_path
         end
 
+        def transaction
+            if current_user.admin?
+              @transactions = Transaction.all
+            else
+              flash[:notice] = "Only admin users can access this feature."
+              redirect_to root_path
+            end
+        end
+
         #GET /admin/traders/:id
         def show
         end

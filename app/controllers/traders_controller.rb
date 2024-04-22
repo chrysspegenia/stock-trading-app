@@ -39,7 +39,7 @@ class TradersController < ApplicationController
         transaction = Transaction.create_transaction(current_user, stock, quantity, price, action, total_amount)
 
         if transaction.save
-          Stock.update_quantity(stock, quantity, price)
+          Stock.update_portfolio(stock, quantity, price)
           User.update_balance(current_user, action, total_amount)
           flash[:notice] = 'Transaction created successfully.'
         else
@@ -68,7 +68,7 @@ class TradersController < ApplicationController
         transaction = Transaction.create_transaction(current_user, stock, quantity, price, action, total_amount)
 
         if transaction.save
-          Stock.update_quantity(stock, -quantity, price)
+          Stock.update_portfolio(stock, -quantity, price)
           User.update_balance(current_user, action, total_amount)
           flash[:notice] = 'Transaction created successfully.'
         else
