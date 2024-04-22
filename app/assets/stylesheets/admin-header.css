@@ -1,0 +1,47 @@
+.admin-header {
+  width: 100%;
+  padding: 0.5rem 4rem;
+  font-size: 36px;
+  background: #0ef;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.admin-header .logo {
+  display: flex;
+  align-items: center;
+  color: #0d2d42;
+  font-weight: 700;
+}
+.admin-header .logo .bx {
+  color: #28a745;
+}
+
+.admin-header .bx-user {
+  border: 2px solid #081b29;
+  border-radius: 100%;
+  padding: 3px;
+}
+
+.admin-header-input {
+  display: flex;
+  align-items: center;
+  width: 35%;
+  background: #fff;
+  padding: 8px 20px;
+  color: #0d2d42;
+  font-size: 1.5rem;
+  border-radius: 10px;
+}
+
+.admin-header-input input {
+  width: 100%;
+  height: 80%;
+  border: none;
+  background: none;
+  outline: none;
+  color: #0d2d42;
+  font-size: 1.3rem;
+  padding-right: 5px;
+}

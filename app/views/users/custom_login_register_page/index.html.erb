@@ -1,3 +1,15 @@
+<% if flash[:alert] %>
+  <div class="login-registration-alert">
+    <%= flash[:alert] %>
+  </div>
+<% end %>
+
+<% if flash[:notice] %>
+  <div class="registration-message">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+
 <div class="main-custom-wrapper">
   <div class="main-custom-container">
 

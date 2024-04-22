@@ -36,19 +36,14 @@
     </div>
 
     <div class="actions">
-      <%# <%= f.submit "Sign up" %>
       <%= button_to "Sign up", registration_path(resource), data: {turbo_frame: "_top"}, class: "form-btn animation", style:"--i:23; --j:6;" %>
     </div>
   <% end %>
 
   <div class="logreg-link animation" style="--i:24; --j:7;">
     <p>Already have an account?
-       <%#might not use the link to function and just add js %>
-      <%# <%= link_to "Login", new_user_registration_path, class:"login-link"%>
       <span class="login-link">Login<span>
     </p>
   </div>
-
-  <%# <%= render "users/shared/links" %>
 
 <%end%>

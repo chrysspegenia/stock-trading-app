@@ -23,15 +23,22 @@
 - [x] I want to have a Transaction page to see and monitor all the transactions made by buying and selling stocks
 - [x] I want to sell my stocks to gain money
 
-#### Gems used
+## Gems used
 
 - [Boxicons](https://boxicons.com/usage)
 - [IEX Ruby Client - IEX Finance API](https://github.com/dblock/iex-ruby-client)
 - [Whenever Gem](https://github.com/javan/whenever)
 
-#### Resouces
+## Resouces
 
 - [Devise Wiki - Admin Role](https://github.com/heartcombo/devise/wiki/How-To:-Add-an-Admin-Role)
 - [Devise Wiki - Confirmable](https://github.com/heartcombo/devise/wiki/How-To:-Add-:confirmable-to-Users)
 - [Hotrails - TurboFrame & TurboStream](https://www.hotrails.dev/turbo-rails/turbo-frames-and-turbo-streams)
 - [Action Mailer Configuration](https://guides.rubyonrails.org/action_mailer_basics.html#action-mailer-configuration)
+
+## Problems and solutions
+
+- [Devise redirect after login fail](https://stackoverflow.com/questions/5832631/devise-redirect-after-login-fail)
+  --Modify devise route when input invalid credentials
+- [Devise redirect on sign up failure](https://stackoverflow.com/questions/6240141/devise-redirect-on-sign-up-failure?rq=3)
+  --Modify devise route upon invalid registration

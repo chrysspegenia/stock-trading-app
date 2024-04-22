@@ -2,6 +2,7 @@ module Admin
     class TradersController < ApplicationController
         before_action :set_trader, only: [:show, :edit, :update]
 
+        layout "admin_dashboard"
         # Get /admin/traders
         #loads both approved and non-approved traders
         def index
