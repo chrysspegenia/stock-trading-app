@@ -9,7 +9,7 @@ class TradersController < ApplicationController
     end
 
     def show
-        @quote = iex_client.quote(params[:id])
+        @company = iex_client.company(params[:id])
         @logo = iex_client.logo(params[:id])
     end
 

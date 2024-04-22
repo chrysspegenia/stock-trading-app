@@ -12,6 +12,7 @@
       <th>Company Name</th>
       <th>Buying Price</th>
       <th>Current Price</th>
+      <th>Shares</th>
       <th>Price Per Share</th>
       <th>Current Value</th>
       <th>Action</th>
@@ -24,9 +25,13 @@
         <td><%= stock.name %></td>
         <td>$<%= stock.price %></td>
         <td>$<%= stock.latest_price %></td>
+        <td><%= stock.shares %></td>
         <td>$<%= stock.price_per_share %></td>
         <td>$<%= stock.current_value %></td>
-        <td> <%= link_to "Buy", buy_new_trader_path(stock.symbol) %>
+        <td>
+        <%= link_to "View Stock", trader_path(stock.symbol) %>
+        |
+        <%= link_to "Buy", buy_new_trader_path(stock.symbol) %>
         |
         <%= link_to "Sell", sell_new_trader_path(stock.symbol) %> </td>
       </tr>
