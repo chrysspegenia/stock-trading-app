@@ -1,10 +1,20 @@
+<h1 class="page-header">Account Details</h1>
 
-<h2><%= @trader.first_name %></h2>
+<main class="account-details-wrapper">
+    <i class='bx bx-user account-photo' ></i>
 
-<p><%= @trader.last_name %></p>
+    <span class="divider"></span>
+    
+    <section class="account-text-info">
+        <h2><%= @trader.first_name %> <%= @trader.last_name %></h2>
 
-<p><%= @trader.email %></p>
+        <p><%= @trader.email %></p>
 
-<%= link_to "Edit", edit_admin_trader_path(@trader) %>
+        <p>Balance: <%= @trader.balance %> USD</p>
+    </section>
 
-<%= link_to "Back to dashboard", admin_traders_path %>
+    <%= link_to(edit_admin_trader_path(@trader), class: "edit-btn") do %>
+        <i class='bx bx-edit-alt' ></i>
+    <% end %>
+
+</main>

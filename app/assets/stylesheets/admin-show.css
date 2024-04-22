@@ -1,0 +1,72 @@
+.page-header {
+  align-self: start;
+  margin-left: 15px;
+  color: #fff;
+}
+
+.account-details-wrapper {
+  margin-top: 1em;
+  color: #081b29;
+  width: 90%;
+  height: 30%;
+  background: #0ef;
+  padding: 1em 3em;
+  border-radius: 1em;
+  display: flex;
+  gap: 3em;
+  position: relative;
+  overflow: hidden;
+}
+
+.account-details-wrapper .account-photo {
+  font-size: 10em;
+  align-self: center;
+  border: 10px solid #0ef;
+  background: #fff;
+  color: #081b29;
+  border-radius: 100%;
+  padding: 10px;
+  z-index: 2;
+}
+
+.account-details-wrapper .account-text-info {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-end;
+  gap: 15px;
+  font-size: 1.5rem;
+  margin-bottom: 1em;
+  z-index: 2;
+}
+
+.account-details-wrapper .account-text-info h2 {
+  color: #fff;
+}
+
+.divider {
+  position: absolute;
+  width: 100%;
+  height: 50%;
+  background: #081b29;
+  top: 0;
+  left: 0;
+}
+
+.account-details-wrapper .edit-btn {
+  font-size: 2.5rem;
+  color: #0ef;
+  width: 3.2rem;
+  height: 3.2rem;
+  border-radius: 100%;
+  display: grid;
+  place-items: center;
+  text-decoration: none;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  transition: 0.5s ease;
+}
+
+.account-details-wrapper .edit-btn:hover {
+  background: #fff;
+}
