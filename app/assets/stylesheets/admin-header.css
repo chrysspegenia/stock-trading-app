@@ -12,6 +12,7 @@
   display: flex;
   align-items: center;
   color: #0d2d42;
+  font-weight: 700;
 }
 .admin-header .logo .bx {
   color: #28a745;
