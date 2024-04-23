@@ -14,7 +14,6 @@ Rails.application.routes.draw do
 
   root to: 'users/custom_login_register_page#index', as: :root
 
-  # resources :traders
   namespace :admin do
     resources :traders do
       get 'pendings', on: :collection

@@ -49,7 +49,7 @@ module Admin
         end
 
         # GET /admin/traders/transaction
-        def transaction
+        def transactions
             @transactions = Transaction.all.order(id: :desc)
         end
 
