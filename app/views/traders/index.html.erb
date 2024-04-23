@@ -7,9 +7,10 @@
 <div><%= @trader.first_name%></div>
 <div><%= @trader.last_name%></div>
 <div><%= @trader.email %></div>
+<div>Wallet Balance: $<%= @trader.balance %></div>
 
 <% if !(@trader.balance > 0) %>
-  <%= link_to "Initialize Balance", init_balance_new_path %>
+  <%= link_to "Initialize Balance", balance_new_trader_path(@trader) %>
 <% end %>
 <br>
 
@@ -48,8 +49,8 @@
   </tbody>
 </table>
 
-<%= link_to "My Portfolio", portfolio_trader_path %>
-<%= link_to "All Transactions", transaction_trader_path %>
+<%= link_to "My Portfolio", portfolio_trader_path(@trader) %>
+<%= link_to "All Transactions", transaction_trader_path(@trader) %>
 
 <%= button_to "Sign Out", destroy_user_session_path, method: :delete %>
 

@@ -1,6 +1,6 @@
 class TradersController < ApplicationController
     before_action :check_approval_status, only: [:buy_new, :buy, :sell_new, :sell, :portfolio, :transaction,
-    :init_balance, :init_balance_new]
+    :balance, :balance_new]
     helper_method :get_logo, :iex_client
 
 
@@ -25,8 +25,9 @@ class TradersController < ApplicationController
     end
 
     def buy_new
-      @quote = iex_client.quote(params[:format])
-      @company = iex_client.company(params[:format])
+      @trader = current_user
+      @quote = iex_client.quote(params[:id])
+      @company = iex_client.company(params[:id])
     end
 
     def buy
@@ -54,8 +55,9 @@ class TradersController < ApplicationController
     end
 
     def sell_new
-      @quote = iex_client.quote(params[:format])
-      @company = iex_client.company(params[:format])
+      @trader = current_user
+      @quote = iex_client.quote(params[:id])
+      @company = iex_client.company(params[:id])
     end
 
     def sell
@@ -82,16 +84,17 @@ class TradersController < ApplicationController
       redirect_to traders_path
     end
 
-    def init_balance_new
+    def balance_new
+      @trader = current_user
       @balance = (params[:format])
     end
 
-    def init_balance
-      initial_balance = BigDecimal(params[:initial_balance])
-      if current_user.update(balance: initial_balance)
-        flash[:success] = 'Wallet balance has been successfully set.'
+    def balance
+      init_balance = BigDecimal(params[:init_balance])
+      if current_user.update(balance: init_balance)
+        flash[:notice] = 'Wallet balance has been successfully set.'
       else
-        flash[:error] = 'Failed to save the wallet balance.'
+        flash[:alert] = 'Failed to save the wallet balance.'
       end
       redirect_to traders_path
     end

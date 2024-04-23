@@ -1,5 +1,5 @@
 <h2>Buy</h2>
-<%= form_with(url: buy_trader_path, method: :post) do |form| %>
+<%= form_with(url: buy_trader_path(@trader), method: :post) do |form| %>
   <%= form.hidden_field :symbol, value: @company.symbol %>
   <%= form.hidden_field :action, value: 'buy' %>
 
