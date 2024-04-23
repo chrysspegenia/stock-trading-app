@@ -14,7 +14,6 @@ Rails.application.routes.draw do
 
   root to: 'users/custom_login_register_page#index', as: :root
 
-  resources :traders
   namespace :admin do
     resources :traders do
       get 'pendings', on: :collection
@@ -25,14 +24,18 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'buy_new', to: 'traders#buy_new', as: 'buy_new_trader'
-  post 'buy', to: 'traders#buy', as: 'buy_trader'
-  get 'sell', to: 'traders#sell_new', as: 'sell_new_trader'
-  post 'sell', to: 'traders#sell', as: 'sell_trader'
-  get 'portfolio', to: 'traders#portfolio', as: 'portfolio_trader'
-  get 'transaction', to: 'traders#transaction', as: 'transaction_trader'
-  get 'init_balance_new', to: 'traders#init_balance_new', as: 'init_balance_new'
-  post 'init_balance', to: 'traders#init_balance', as: 'init_balance'
+  resources :traders, only: [:index, :show] do
+    member do
+      get 'portfolio'
+      get 'transaction'
+      get 'balance_new'
+      post 'balance'
+      get 'buy_new'
+      post 'buy'
+      get 'sell_new'
+      post 'sell'
+    end
+  end
 
   #this route is only for creating initial admin
   patch 'grant_admin', to: 'admin/traders#grant_admin', as: 'grant_admin'

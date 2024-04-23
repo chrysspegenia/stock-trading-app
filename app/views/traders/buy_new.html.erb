@@ -1,6 +1,11 @@
 <h2>Buy</h2>
-<%= form_with(url: buy_trader_path, method: :post) do |form| %>
-  <%= form.hidden_field :symbol, value: @company.symbol %>
+
+<h4> Stock Details </h4>
+<div> Company Name: <%= @quote.company_name %> </div>
+<div> Current Price: $<%= @quote.latest_price %> </div>
+
+<%= form_with(url: buy_trader_path(@trader), method: :post) do |form| %>
+  <%= form.hidden_field :symbol, value: @quote.symbol %>
   <%= form.hidden_field :action, value: 'buy' %>
 
   <div class="field">
