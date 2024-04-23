@@ -94,6 +94,10 @@
   font-size: 1.3rem;
 }
 
+.trader:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
 .approved-trader-link {
   border-bottom: 0;
   text-decoration: none;
