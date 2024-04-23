@@ -28,6 +28,8 @@
 - [Boxicons](https://boxicons.com/usage)
 - [IEX Ruby Client - IEX Finance API](https://github.com/dblock/iex-ruby-client)
 - [Whenever Gem](https://github.com/javan/whenever)
+- [Rspec-rails](https://github.com/rspec/rspec-rails?tab=readme-ov-file)
+- [factory_bot_rails](https://github.com/thoughtbot/factory_bot_rails)
 
 ## Resouces
 
