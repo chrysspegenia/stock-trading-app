@@ -1,0 +1,12 @@
+<h1>Initialize Balance for Trader</h1>
+
+<p>Trader: <%= @trader.first_name %> <%= @trader.last_name %></p>
+
+<%= form_with(url: balance_admin_trader_path(@trader), method: :post) do |form| %>
+  <div class="field">
+    <%= form.label :initial_balance, "Initial Balance" %>
+    <%= form.text_field :initial_balance %>
+  </div>
+
+  <%= form.submit "Set Balance" %>
+<% end %>

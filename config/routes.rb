@@ -19,7 +19,8 @@ Rails.application.routes.draw do
     resources :traders do
       get 'pendings', on: :collection
       post 'approve', on: :member
-      post 'initialize_balance', on: :collection
+      get 'balance_new', on: :member
+      post 'balance', on: :member
       get 'transaction', on: :collection
     end
   end
