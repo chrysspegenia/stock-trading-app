@@ -35,6 +35,7 @@
 - [Devise Wiki - Confirmable](https://github.com/heartcombo/devise/wiki/How-To:-Add-:confirmable-to-Users)
 - [Hotrails - TurboFrame & TurboStream](https://www.hotrails.dev/turbo-rails/turbo-frames-and-turbo-streams)
 - [Action Mailer Configuration](https://guides.rubyonrails.org/action_mailer_basics.html#action-mailer-configuration)
+- [Rails layout templates](https://medium.com/@shachsan/how-to-utilize-rails-layouts-to-keep-our-view-templates-less-clutter-1f6f50a1ef29)
 
 ## Problems and solutions
 
