@@ -1,6 +1,6 @@
 module Admin
     class TradersController < ApplicationController
-        before_action :set_trader, only: [:show, :edit, :update]
+        before_action :set_trader, only: [:show, :edit, :update, :balance_new, :balance]
 
         layout "admin_dashboard"
         # Get /admin/traders
@@ -38,31 +38,19 @@ module Admin
             redirect_to admin_traders_path
         end
 
+        # GET /admin/traders/:id/balance_new
         def balance_new
-            @trader = User.find(params[:id])
         end
 
+        # POST /admin/traders/:id/balance
         def balance
-            trader = User.find(params[:user_id])
-            init_balance = BigDecimal(params[:initial_balance])
-
-
-            if trader.update(balance: init_balance)
-                flash[:notice] = "Balance initialized successfully."
-            else
-                flash[:alert] = "Failed to initialize balance."
-            end
-
+            @trader.update(balance: (params[:initial_balance]))
             redirect_to admin_traders_path
         end
 
+        # GET /admin/traders/transaction
         def transaction
-            if current_user.admin?
-              @transactions = Transaction.all.order(id: :desc)
-            else
-              flash[:notice] = "Only admin users can access this feature."
-              redirect_to root_path
-            end
+            @transactions = Transaction.all.order(id: :desc)
         end
 
         #GET /admin/traders/:id
