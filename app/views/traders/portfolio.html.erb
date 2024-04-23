@@ -30,10 +30,12 @@
         <td>$<%= stock.current_value %></td>
         <td>
         <%= link_to "View", trader_path(stock.symbol) %>
-        |
-        <%= link_to "Buy", buy_new_trader_path(stock.symbol) %>
-        |
-        <%= link_to "Sell", sell_new_trader_path(stock.symbol) %> </td>
+        <% if @trader.approved? %>
+          |
+          <%= link_to "Buy", buy_new_trader_path(stock.symbol) %>
+          |
+          <%= link_to "Sell", sell_new_trader_path(stock.symbol) %> </td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
