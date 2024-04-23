@@ -28,22 +28,22 @@
     <span>Name</span>
     <span>Email</span>
     <span>Balance</span>
-    <span>Button</span>
+    <span>Buttons</span>
   </div>
 
   <ul class="approved-traders-list">
     <% @traders.each do |trader| %>
-      <li class="trader">
+      <li class="trader trader-data">
         <%= link_to(admin_trader_path(trader), class: "approved-trader-link") do %>
           <span><%= trader.id %></span>
           <span><%= trader.first_name%> <%= trader.last_name%></span>
           <span><%= trader.email %></span>
           <span><%= trader.balance %></span>
+          <div class="trader-btns-wrapper">
+            <%= link_to "Set Balance", balance_new_admin_trader_path(trader), class: "balance-btn" %>
+            <%= button_to "Revoke account", approve_admin_trader_path(trader), method: :post, class: "revoke-btn" %>
+          </div>
         <% end %>
-        <%= button_to "Revoke account", approve_admin_trader_path(trader), method: :post, class: "revoke-btn" %>
-        <button>
-          <%= link_to "Set Balance", balance_new_admin_trader_path(trader) %>
-        </button>
       </li>
     <% end %>
   </ul>
@@ -51,7 +51,3 @@
 
 <%# this method is only for creating initial admin %>
 <%= button_to "Grant Admin", grant_admin_path, method: :patch, data: { confirm: "Are you sure you want to grant admin status to this user?" } %>
-
-<%= link_to "All Transactions", transaction_admin_traders_path %>
-
-<%= button_to "Sign Out", destroy_user_session_path, method: :delete %>

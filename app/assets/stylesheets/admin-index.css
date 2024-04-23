@@ -1,7 +1,7 @@
 .approved-traders-wrapper,
 .pending-traders-wrapper {
   width: 90%;
-  max-height: 50%;
+  /* max-height: 50%; */
   display: flex;
   flex-direction: column;
   color: #fff;
@@ -106,6 +106,7 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  padding: 0 50px;
 }
 
 .trader.approved-list-header {
@@ -113,31 +114,46 @@
   background: #0ef;
   color: #081b29;
   font-weight: 700;
-  padding: 5px 0;
+  padding: 5px 30px;
 }
 
 .trader span:first-child {
-  flex: 0.5; /* Adjust span that contains id to shrink more */
+  flex: 0.5;
 }
 
 .trader span:not(:first-child) {
-  flex: 1; /* Distribute remaining space evenly to other info */
+  flex: 1;
 }
 
+.trader-data span:nth-child(4) {
+  text-align: right;
+  padding-right: 3.5em;
+}
+
+.trader-btns-wrapper {
+  display: flex;
+  justify-items: space-evenly;
+  align-items: center;
+  gap: 1em;
+  width: 20%;
+}
+
+.trader .balance-btn,
 .trader .revoke-btn,
 .trader .approve-btn {
-  flex-shrink: 0;
-  margin-left: auto;
+  /* flex-shrink: 0; */
+  text-align: center;
   border: none;
   background: #28a745;
   color: #fff;
-  padding: 5px 12px;
+  padding: 5px 16px;
   cursor: pointer;
   font-size: 15px;
   border-radius: 5px;
+  text-decoration: none;
+  white-space: nowrap;
 }
 
 .trader .revoke-btn {
   background: #f0a500;
-  width: 110%;
 }
