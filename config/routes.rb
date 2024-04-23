@@ -30,6 +30,8 @@ Rails.application.routes.draw do
   post 'sell', to: 'traders#sell', as: 'sell_trader'
   get 'portfolio', to: 'traders#portfolio', as: 'portfolio_trader'
   get 'transaction', to: 'traders#transaction', as: 'transaction_trader'
+  get 'init_balance_new', to: 'traders#init_balance_new', as: 'init_balance_new'
+  post 'init_balance', to: 'traders#init_balance', as: 'init_balance'
 
   #this route is only for creating initial admin
   patch 'grant_admin', to: 'admin/traders#grant_admin', as: 'grant_admin'

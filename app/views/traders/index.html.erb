@@ -8,6 +8,9 @@
 <div><%= @trader.last_name%></div>
 <div><%= @trader.email %></div>
 
+<% if !(@trader.balance > 0) %>
+  <%= link_to "Initialize Balance", init_balance_new_path %>
+<% end %>
 <br>
 
 <h2>Stocks</h2>

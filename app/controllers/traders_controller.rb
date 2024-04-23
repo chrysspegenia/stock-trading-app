@@ -1,5 +1,6 @@
 class TradersController < ApplicationController
-    before_action :check_approval_status, only: [:buy_new, :buy, :sell_new, :sell, :portfolio, :transaction]
+    before_action :check_approval_status, only: [:buy_new, :buy, :sell_new, :sell, :portfolio, :transaction,
+    :init_balance, :init_balance_new]
     helper_method :get_logo, :iex_client
 
 
@@ -78,6 +79,20 @@ class TradersController < ApplicationController
         flash[:alert] = 'Insufficient quantity of shares to sell.'
       end
 
+      redirect_to traders_path
+    end
+
+    def init_balance_new
+      @balance = (params[:format])
+    end
+
+    def init_balance
+      initial_balance = BigDecimal(params[:initial_balance])
+      if current_user.update(balance: initial_balance)
+        flash[:success] = 'Wallet balance has been successfully set.'
+      else
+        flash[:error] = 'Failed to save the wallet balance.'
+      end
       redirect_to traders_path
     end
 

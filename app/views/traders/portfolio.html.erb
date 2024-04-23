@@ -29,7 +29,7 @@
         <td>$<%= stock.price_per_share %></td>
         <td>$<%= stock.current_value %></td>
         <td>
-        <%= link_to "View Stock", trader_path(stock.symbol) %>
+        <%= link_to "View", trader_path(stock.symbol) %>
         |
         <%= link_to "Buy", buy_new_trader_path(stock.symbol) %>
         |

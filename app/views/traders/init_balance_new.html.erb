@@ -1,0 +1,11 @@
+<h1>Initialize Balance</h1>
+<p>Remember, you can only set your initial wallet balance once.
+Be sure to set an adequate amount to maximize your usage with various stocks.</p>
+<%= form_tag init_balance_path do %>
+  <div class="form-group">
+    <%= label_tag :initial_balance, "Initial Balance:" %>
+    <%= text_field_tag :initial_balance %>
+  </div>
+
+  <%= submit_tag "Set Wallet Balance" %>
+<% end %>
