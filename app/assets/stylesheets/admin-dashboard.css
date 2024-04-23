@@ -21,4 +21,5 @@
   align-items: center;
   min-height: 87vh;
   background: #0d2d42;
+  position: relative;
 }

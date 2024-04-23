@@ -1,0 +1,39 @@
+.admin-edit-form {
+  position: relative;
+  width: 550px;
+  height: 500px;
+  background: transparent;
+  border: 2px solid #0ef;
+  overflow: hidden;
+  box-shadow: 0 0 25px #0ef;
+  color: #fff;
+  margin-top: 3em;
+  padding-top: 40px;
+}
+
+.admin-edit-form h2 {
+  font-size: 32px;
+  text-align: center;
+}
+
+.edit-return-btn {
+  display: grid;
+  place-items: center;
+  font-size: 2.5rem;
+  color: #fff;
+  position: absolute;
+  left: 0.5em;
+  top: 0.5em;
+  border-radius: 100%;
+  width: 3rem;
+  height: 3rem;
+  text-decoration: none;
+  transition: 0.5s ease;
+}
+
+.edit-return-btn:hover {
+  background: #fff;
+  color: #081b29;
+}
+
+/* Other css styles located in admin-new.css */
