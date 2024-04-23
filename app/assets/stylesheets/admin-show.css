@@ -124,6 +124,10 @@
   font-size: 1.3rem;
 }
 
+.transaction:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
 .transaction span {
   overflow: hidden;
   white-space: nowrap;
