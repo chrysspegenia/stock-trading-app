@@ -1,31 +1,35 @@
-<h1>All Transactions</h1>
+<h1 class="transactions-page-header">All Transactions</h1>
 
-<table border="1">
+<table>
   <thead>
     <tr>
-      <th>Date</th>
-      <th>Time</th>
       <th>Account Name</th>
       <th>Symbol</th>
-      <th>Name</th>
+      <th>Stock Name</th>
       <th>Quantity</th>
       <th>Price</th>
       <th>Action</th>
       <th>Total Amount</th>
+      <th>Date</th>
+      <th>Time</th>
     </tr>
   </thead>
   <tbody>
     <% @transactions.each do |transaction| %>
-      <tr>
-        <td><%= transaction.created_at.to_date %></td>
-        <td><%= transaction.created_at.strftime('%H:%M:%S') %></td>
+      <tr class="transaction-data">
         <td><%= transaction.user.first_name %> <%= transaction.user.last_name %></td>
         <td><%= transaction.stock.symbol %></td>
         <td><%= transaction.stock.name %></td>
         <td><%= transaction.quantity %></td>
         <td>$<%= transaction.price %></td>
-        <td><%= transaction.action %></td>
+        <td>
+          <span class="<%= transaction.action == 'buy' ? 'buy' : 'sell' %>">
+            <%= transaction.action %>
+          </span>
+        </td>
         <td>$<%= transaction.total_amount %></td>
+        <td><%= transaction.created_at.to_date %></td>
+        <td><%= transaction.created_at.strftime('%H:%M:%S') %></td>
       </tr>
     <% end %>
   </tbody>
