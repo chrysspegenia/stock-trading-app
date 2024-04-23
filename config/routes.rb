@@ -20,7 +20,7 @@ Rails.application.routes.draw do
       post 'approve', on: :member
       get 'balance_new', on: :member
       post 'balance', on: :member
-      get 'transaction', on: :collection
+      get 'transactions', on: :collection
     end
   end
 
