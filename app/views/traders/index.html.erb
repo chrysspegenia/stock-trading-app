@@ -9,7 +9,7 @@
 <div><%= @trader.email %></div>
 <div>Wallet Balance: $<%= @trader.balance %></div>
 
-<% if !(@trader.balance > 0) %>
+<% if @trader.approved? && @trader.balance <= 0 %>
   <%= link_to "Initialize Balance", balance_new_trader_path(@trader) %>
 <% end %>
 <br>
@@ -41,8 +41,9 @@
           <td><%= quote.change_percent %></td>
           <td><%= link_to "View", trader_path(quote.symbol) %>
               |
-              <%= link_to "Buy", buy_new_trader_path(quote.symbol) %>
-              </td>
+              <% if @trader.approved? %>
+                <%= link_to "Buy", buy_new_trader_path(quote.symbol) %>
+              <% end %></td>
         </tr>
       <% end %>
     <% end %>

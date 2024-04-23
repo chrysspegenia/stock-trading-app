@@ -31,6 +31,7 @@
 <div> <strong>Description:</strong>
 <%= @company.description %> </div>
 
-<%= link_to "Buy", buy_new_trader_path(@company.symbol) %>
-
+<% if @trader.approved? %>
+  <%= link_to "Buy", buy_new_trader_path(@company.symbol) %>
+<% end %>
 <div><%= link_to "Main", traders_path %></div>

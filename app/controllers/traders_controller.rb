@@ -1,7 +1,6 @@
 class TradersController < ApplicationController
-    before_action :check_approval_status, only: [:buy_new, :buy, :sell_new, :sell, :portfolio, :transaction,
-    :balance, :balance_new]
-    before_action :set_trader, only: [:index, :portfolio, :transaction, :buy_new, :sell_new, :balance_new]
+    before_action :check_approval_status, only: [:buy_new, :buy, :sell_new, :sell, :balance, :balance_new]
+    before_action :set_trader, only: [:index, :show, :portfolio, :transaction, :buy_new, :sell_new, :balance_new]
     helper_method :get_logo, :iex_client
 
     #GET /traders
