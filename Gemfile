@@ -71,3 +71,11 @@ gem "devise", "~> 4.9"
 gem "iex-ruby-client"
 
 gem 'whenever', require: false
+
+group :development, :test do
+  gem 'rspec-rails', '~> 6.1.0'
+end
+
+group :development, :test do
+  gem 'factory_bot_rails'
+end

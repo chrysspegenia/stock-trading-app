@@ -2,6 +2,7 @@ class TradersController < ApplicationController
     before_action :authorize_trader
     before_action :check_approval_status, only: [:buy_new, :buy, :sell_new, :sell, :balance, :balance_new]
     before_action :set_trader, only: [:index, :show, :portfolio, :transaction, :buy_new, :sell_new, :balance_new]
+    after_action :process_transaction, only: [:buy, :sell]
     helper_method :get_logo, :iex_client
 
     #GET /traders
@@ -32,26 +33,16 @@ class TradersController < ApplicationController
 
     #POST /traders/:id/buy
     def buy
-      symbol, quantity, action = params.values_at(:symbol, :quantity, :action)
-      quantity = quantity.to_i
+      symbol, quantity, action, company_name = params.values_at(:symbol, :quantity, :action, :company_name)
       price = BigDecimal(iex_client.quote(symbol).latest_price.to_s)
-      total_amount = quantity * price
-      stock = Stock.create_or_update_stock(symbol, current_user, iex_client)
+      stock = Stock.create_or_update_stock(symbol, current_user, company_name)
 
-      if total_amount <= current_user.balance
-        transaction = Transaction.create_transaction(current_user, stock, quantity, price, action, total_amount)
-
-        if transaction.save
-          Stock.update_portfolio(stock, quantity, price)
-          User.update_balance(current_user, action, total_amount)
-          flash[:notice] = 'Transaction created successfully.'
-        else
-          flash[:alert] = 'Transaction failed to save.'
-        end
+      if (quantity.to_i * price) <= current_user.balance
+        @transaction = Transaction.create_transaction(current_user, stock, quantity.to_i, price, action)
+        @transaction.save!
       else
         flash[:alert] = 'Insufficient balance to make the purchase.'
       end
-
       redirect_to traders_path
     end
 
@@ -63,26 +54,16 @@ class TradersController < ApplicationController
 
     #POST /traders/:id/sell
     def sell
-      symbol, quantity, action = params.values_at(:symbol, :quantity, :action)
-      quantity = quantity.to_i
+      symbol, quantity, action, company_name = params.values_at(:symbol, :quantity, :action, :company_name)
       price = BigDecimal(iex_client.quote(symbol).latest_price.to_s)
-      total_amount = quantity * price
       stock = Stock.find_by(symbol: symbol, user_id: current_user.id)
 
-      if stock && stock.shares >= quantity
-        transaction = Transaction.create_transaction(current_user, stock, quantity, price, action, total_amount)
-
-        if transaction.save
-          Stock.update_portfolio(stock, -quantity, price)
-          User.update_balance(current_user, action, total_amount)
-          flash[:notice] = 'Transaction created successfully.'
-        else
-          flash[:alert] = 'Transaction failed to save.'
-        end
+      if stock && stock.shares >= quantity.to_i
+        @transaction = Transaction.create_transaction(current_user, stock, quantity.to_i, price, action)
+        @transaction.save!
       else
         flash[:alert] = 'Insufficient quantity of shares to sell.'
       end
-
       redirect_to traders_path
     end
 
@@ -117,6 +98,19 @@ class TradersController < ApplicationController
 
     def get_logo(symbol)
       iex_client.logo(symbol).url
+    end
+
+    def process_transaction
+      if !(@transaction.nil?)
+        User.update_balance(@transaction.user, @transaction.action, @transaction.price * @transaction.quantity.to_i)
+        if @transaction.action == 'buy'
+          Stock.update_portfolio(@transaction.stock, @transaction.quantity, @transaction.price)
+        else
+          Stock.update_portfolio(@transaction.stock, -@transaction.quantity, @transaction.price)
+        end
+      else
+        flash[:alert] = 'Failed Transaction.'
+      end
     end
 
     def check_approval_status

@@ -7,6 +7,7 @@
 <%= form_with(url: buy_trader_path(@trader), method: :post) do |form| %>
   <%= form.hidden_field :symbol, value: @quote.symbol %>
   <%= form.hidden_field :action, value: 'buy' %>
+  <%= form.hidden_field :company_name, value: @quote.company_name %>
 
   <div class="field">
     <%= form.label :quantity %>
