@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>StockPulse</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+    <%= stylesheet_link_tag 'https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'%>
+    <%= javascript_include_tag 'dashboard', 'data-turbo-track': 'reload', defer: true %>
+
+  </head>
+
+  <body class="admin-body">
+    
+    <header class="admin-header">
+        <div class="logo">
+            <i class='bx bx-candles' ></i><span>StockPulse</span>
+        </div>
+
+        <div class="admin-header-input">
+            <input type="text">
+            <i class='bx bx-search' ></i>
+        </div>
+
+        <i class='bx bx-user'></i>
+    </header>
+
+    <section class="admin-dashboard">
+        <div class="admin-navbar">
+            <div class="admin-navbar-routes">
+                <div id="toggle-width-btn" class="nav-item">
+                    <i class='bx bx-expand-horizontal'></i><span class="nav-item-text">Minimize</span>
+                </div>
+
+                <%= link_to(admin_traders_path, class: "nav-item") do %>
+                    <i class='bx bx-home'></i><span class="nav-item-text">Home</span>
+                <% end %>
+                
+                <%=link_to(transactions_admin_traders_path, class: "nav-item") do %>
+                    <i class='bx bx-wallet'></i><span class="nav-item-text">Transactions</span>
+                <% end %>
+                
+                <%= link_to(new_admin_trader_path, class: "nav-item") do %>
+                    <i class='bx bx-user-plus'></i><span class="nav-item-text">Create account</span>
+                <% end %>
+            </div>
+
+            <div class="admin-account-btns">   
+                <%= button_to(destroy_user_session_path, method: :delete, class: "nav-item logout-btn") do %>
+                    <i class='bx bx-power-off'></i><span class="nav-item-text">Logout</span>
+                <% end %>
+            </div>
+        </div>
+
+        <main class="admin-content">
+            <%= yield %>
+        </main>
+    </section>
+  </body>
+
+</html>
