@@ -5,6 +5,8 @@ class TradersController < ApplicationController
     after_action :process_transaction, only: [:buy, :sell]
     helper_method :get_logo, :iex_client
 
+    layout 'trader_dashboard'
+    
     #GET /traders
     def index
         @quotes = iex_client.stock_market_list(:mostactive)
