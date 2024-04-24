@@ -3,9 +3,9 @@ class Stock < ApplicationRecord
   belongs_to :user
   has_many :transactions
 
-  def self.create_or_update_stock(symbol, user, iex_client)
+  def self.create_or_update_stock(symbol, user, company_name)
     stock = find_or_initialize_by(symbol: symbol, user_id: user.id)
-    stock.name = iex_client.quote(symbol).company_name
+    stock.name = company_name
     stock.user = user unless stock.persisted?
     stock.save
     stock

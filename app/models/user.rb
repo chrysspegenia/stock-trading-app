@@ -7,7 +7,9 @@ class User < ApplicationRecord
          :confirmable
 
   attr_accessor :unconfirmed_email
-  validates :first_name, :last_name, :email, presence: {message: "Field should not be blank"}
+  validates :first_name, :last_name, :email, presence: { message: "Field should not be blank" }
+  validates :balance, numericality: { greater_than_or_equal_to: 0, message: "Balance must be greater than or equal to zero" }
+  validates :balance, numericality: { message: "Balance must be a number" }
 
   def self.update_balance(user, action, total_amount)
     if action == "buy"
