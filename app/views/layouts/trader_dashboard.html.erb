@@ -35,16 +35,16 @@
                     <i class='bx bx-expand-horizontal'></i><span class="nav-item-text">Minimize</span>
                 </div>
 
-                <%= link_to(admin_traders_path, class: "nav-item") do %>
+                <%= link_to(traders_path, class: "nav-item") do %>
                     <i class='bx bx-home'></i><span class="nav-item-text">Home</span>
                 <% end %>
                 
-                <%=link_to(transactions_admin_traders_path, class: "nav-item") do %>
-                    <i class='bx bx-wallet'></i><span class="nav-item-text">Transactions</span>
+                <%=link_to(portfolio_trader_path(@trader), class: "nav-item") do %>
+                    <i class='bx bx-wallet'></i><span class="nav-item-text">Portfolio</span>
                 <% end %>
                 
-                <%= link_to(new_admin_trader_path, class: "nav-item") do %>
-                    <i class='bx bx-user-plus'></i><span class="nav-item-text">Create account</span>
+                <%= link_to(transaction_trader_path(@trader), class: "nav-item") do %>
+                    <i class='bx bx-history'></i><span class="nav-item-text">Transaction History</span>
                 <% end %>
             </div>
 
