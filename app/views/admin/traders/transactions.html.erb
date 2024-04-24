@@ -16,7 +16,7 @@
   </thead>
   <tbody>
     <% @transactions.each do |transaction| %>
-      <tr class="transaction-data">
+      <tr class="table-data">
         <td><%= transaction.user.first_name %> <%= transaction.user.last_name %></td>
         <td><%= transaction.stock.symbol %></td>
         <td><%= transaction.stock.name %></td>
