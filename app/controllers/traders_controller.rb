@@ -1,4 +1,5 @@
 class TradersController < ApplicationController
+    before_action :authorize_trader
     before_action :check_approval_status, only: [:buy_new, :buy, :sell_new, :sell, :balance, :balance_new]
     before_action :set_trader, only: [:index, :show, :portfolio, :transaction, :buy_new, :sell_new, :balance_new]
     helper_method :get_logo, :iex_client
@@ -102,13 +103,17 @@ class TradersController < ApplicationController
 
     private
 
-    def iex_client
-       @iex_client ||= IEX::Api::Client.new
+    def authorize_trader
+      redirect_to admin_traders_path unless !current_user.admin?
     end
 
     def set_trader
       @trader = current_user
     end
+
+    def iex_client
+      @iex_client ||= IEX::Api::Client.new
+   end
 
     def get_logo(symbol)
       iex_client.logo(symbol).url
