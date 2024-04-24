@@ -1,0 +1,56 @@
+.transactions-page-header {
+  color: #fff;
+  margin-bottom: 1em;
+}
+
+table {
+  color: #fff;
+  border-collapse: collapse;
+  border-spacing: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  width: 90%;
+}
+
+td,
+th {
+  border-right: none;
+  padding: 15px 25px;
+}
+
+tr th {
+  padding: 10px;
+  background: #0ef;
+  color: #081b29;
+  font-weight: 700;
+  font-size: 1.3rem;
+}
+
+.table-data {
+  background: #081b29;
+  border-bottom: 1px solid #fff;
+  font-size: 1.1rem;
+}
+
+.table-data:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.table-data .buy,
+.table-data .sell {
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+}
+
+.table-data td:nth-child(6) {
+  padding: 5px;
+}
+
+.table-data td span.buy {
+  background: #28a745;
+}
+
+.table-data td span.sell {
+  background: #f02c00;
+}
