@@ -23,11 +23,11 @@
       <tr class="table-data">
         <td><%= stock.symbol %></td>
         <td><%= stock.name %></td>
-        <td>$<%= stock.price %></td>
-        <td>$<%= stock.latest_price %></td>
+        <td>$<%= format_decimal_with_commas(stock.price) %></td>
+        <td>$<%= format_decimal_with_commas(stock.latest_price) %></td>
         <td><%= stock.shares %></td>
-        <td>$<%= stock.price_per_share %></td>
-        <td>$<%= stock.current_value %></td>
+        <td>$<%= format_decimal_with_commas(stock.price_per_share) %></td>
+        <td>$<%= format_decimal_with_commas(stock.current_value) %></td>
         <td>
         <%= link_to "View", trader_path(stock.symbol) %>
         <% if @trader.approved? %>

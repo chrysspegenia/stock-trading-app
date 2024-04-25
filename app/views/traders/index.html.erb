@@ -44,13 +44,13 @@
             
             <td>
               <%= link_to trader_path(quote.symbol) do %>
-                <%= quote.market_cap %>
+                $<%= format_decimal_with_commas(quote.market_cap) %>
               <% end %>
             </td>
             
             <td>
               <%= link_to trader_path(quote.symbol) do %>
-                <%= quote.latest_price %>
+                $<%= format_decimal_with_commas(quote.latest_price) %>
               <% end %>
             </td>
 

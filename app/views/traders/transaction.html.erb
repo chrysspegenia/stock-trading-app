@@ -26,9 +26,9 @@
         <td><%= transaction.stock.symbol %></td>
         <td><%= transaction.stock.name %></td>
         <td><%= transaction.quantity %></td>
-        <td>$<%= transaction.price %></td>
+        <td>$<%= format_decimal_with_commas(transaction.price) %></td>
         <td><%= transaction.action %></td>
-        <td>$<%= transaction.total_amount %></td>
+        <td>$<%= format_decimal_with_commas(transaction.total_amount) %></td>
       </tr>
     <% end %>
   </tbody>
