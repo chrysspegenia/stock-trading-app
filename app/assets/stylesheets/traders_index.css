@@ -29,8 +29,25 @@
 .table-data {
   pointer-events: fill;
 }
+
 .stock-list td {
   padding: 0;
+}
+
+.stock-list th:first-child,
+.stock-list td:first-child {
+  width: 23%;
+  padding-left: 30px;
+}
+
+.stock-list th:not(:first-child),
+.stock-list td:not(:first-child) {
+  text-align: right;
+}
+
+.stock-list th:last-child,
+.stock-list td:last-child {
+  text-align: center;
 }
 
 .stock-list td a {
