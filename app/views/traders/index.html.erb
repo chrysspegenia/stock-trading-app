@@ -42,41 +42,6 @@
 
 <table border="1">
   <thead>
-    <tr>
-        <th colspan="5"> Recent Transactions </th>
-    </tr>
-  </thead>
-  <thead>
-    <tr>
-      <th>Stock Symbol</th>
-      <th>Quantity</th>
-      <th>Price</th>
-      <th>Action</th>
-      <th>Total Amount</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% if @trader.transactions.any? %>
-      <% @trader.transactions.order(created_at: :desc).limit(3).each do |transaction| %>
-        <tr>
-          <td><%= transaction.stock.symbol %></td>
-          <td><%= transaction.quantity %></td>
-          <td>$<%= transaction.price %></td>
-          <td><%= transaction.action %></td>
-          <td>$<%= transaction.total_amount %></td>
-        </tr>
-      <% end %>
-    <% else %>
-      <tr>
-        <td colspan="5">Start trading stocks!</td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<br>
-
-<table border="1">
-  <thead>
   <tr>
       <th colspan="8"> Most Active Stocks </th>
   </tr>
