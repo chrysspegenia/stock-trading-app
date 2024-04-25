@@ -8,7 +8,7 @@
 
 <table>
   <thead>
-    <tr>
+    <tr class="portfolio-data">
       <th>Symbol</th>
       <th>Company Name</th>
       <th>Buying Price</th>
@@ -16,27 +16,64 @@
       <th>Shares</th>
       <th>Price Per Share</th>
       <th>Current Value</th>
-      <th>Action</th>
+      <% if @trader.approved? %>
+        <th>Action</th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
     <% @stocks.each do |stock| %>
-      <tr class="table-data">
-        <td><%= stock.symbol %></td>
-        <td><%= stock.name %></td>
-        <td>$<%= format_decimal_with_commas(stock.price) %></td>
-        <td>$<%= format_decimal_with_commas(stock.latest_price) %></td>
-        <td><%= stock.shares %></td>
-        <td>$<%= format_decimal_with_commas(stock.price_per_share) %></td>
-        <td>$<%= format_decimal_with_commas(stock.current_value) %></td>
+      <tr class="table-data portfolio-data">
+
         <td>
-        <%= link_to "View", trader_path(stock.symbol) %>
+           <%= link_to trader_path(stock.symbol) do %>
+              <%= stock.symbol %>
+           <% end %>
+        </td>
+
+        <td>
+           <%= link_to trader_path(stock.symbol) do %>
+              <%= stock.name %>
+           <% end %>
+        </td>
+
+        <td>
+          <%= link_to trader_path(stock.symbol) do %>
+              $<%= format_decimal_with_commas(stock.price) %>
+          <% end %>
+        </td>
+
+        <td>
+          <%= link_to trader_path(stock.symbol) do %>
+              $<%= format_decimal_with_commas(stock.latest_price) %>
+          <% end %>
+        </td>
+
+        <td>
+          <%= link_to trader_path(stock.symbol) do %>
+              <%= stock.shares %>
+          <% end %>      
+        </td>
+
+        <td>
+          <%= link_to trader_path(stock.symbol) do %>
+              $<%= format_decimal_with_commas(stock.price_per_share) %>
+          <% end %> 
+        </td>
+
+        <td>
+          <%= link_to trader_path(stock.symbol) do %>
+              $<%= format_decimal_with_commas(stock.current_value) %>
+          <% end %>
+        </td>
+
         <% if @trader.approved? %>
-          |
-          <%= link_to "Buy", buy_new_trader_path(stock.symbol) %>
-          |
-          <%= link_to "Sell", sell_new_trader_path(stock.symbol) %> </td>
+          <td class="action-column">
+              <%= link_to "Buy", buy_new_trader_path(stock.symbol), class: "portfolio-buy-btn" %>
+              <%= link_to "Sell", sell_new_trader_path(stock.symbol), class: "portfolio-sell-btn" %> 
+          </td>
         <% end %>
+
       </tr>
     <% end %>
   </tbody>

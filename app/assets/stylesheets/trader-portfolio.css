@@ -1,0 +1,48 @@
+.portfolio-data td:nth-child(3),
+.portfolio-data td:nth-child(4),
+.portfolio-data td:nth-child(5),
+.portfolio-data td:nth-child(6),
+.portfolio-data td:nth-child(7) {
+  text-align: right;
+}
+
+.portfolio-data td:nth-child(8) {
+  padding: 10px 15px;
+}
+
+.portfolio-data td:first-child {
+  padding-left: 15px;
+}
+
+.portfolio-data td a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  padding: 10px 15px;
+}
+
+.portfolio-data td {
+  padding: 0;
+}
+
+.portfolio-data .action-column {
+  display: flex;
+  justify-content: space-around;
+  vertical-align: middle;
+}
+
+.portfolio-data td .portfolio-buy-btn,
+.portfolio-data td .portfolio-sell-btn {
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+
+.portfolio-data td .portfolio-buy-btn {
+  border: 1px solid #28a745;
+  color: #28a745;
+}
+
+.portfolio-data td .portfolio-sell-btn {
+  border: 1px solid #f02c00;
+  color: #f02c00;
+}
