@@ -3,6 +3,8 @@ class Stock < ApplicationRecord
   belongs_to :user
   has_many :transactions
 
+  validates :shares, numericality: { greater_than_or_equal_to: 0 }
+
   def self.create_or_update_stock(symbol, user, company_name)
     stock = find_or_initialize_by(symbol: symbol, user_id: user.id)
     stock.name = company_name

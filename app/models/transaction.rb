@@ -2,7 +2,7 @@ class Transaction < ApplicationRecord
   belongs_to :user
   belongs_to :stock
 
-  validates :quantity, numericality: { greater_than_or_equal_to: 1 }
+  validates :quantity, numericality: { greater_than_or_equal_to: 0 }
 
   def self.create_transaction(user, stock, quantity, price, action)
     new(

@@ -75,7 +75,7 @@ RSpec.describe User, type: :model do
     it "returns all transactions associated with the user through stocks" do
       user = FactoryBot.create(:user)
       stock1 = FactoryBot.create(:stock, user: user)
-      transaction1 = FactoryBot.create(:transaction, stock: stock1, user: user)
+      transaction1 = FactoryBot.create(:transaction, stock: stock1, user: user, quantity: 10)
 
       expect(user.stocks).to contain_exactly(stock1)
 
