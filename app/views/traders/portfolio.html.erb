@@ -3,6 +3,7 @@
 <div>
   <label> User Name: </label> <%= @trader.first_name %> <%= @trader.last_name %>
   <label> User Wallet: </label> $<%= @trader.balance %>
+  <label> Portfolio Value: </label> $<%= @stocks.sum(:current_value) %>
 </div>
 
 <table>

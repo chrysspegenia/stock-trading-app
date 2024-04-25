@@ -4,16 +4,49 @@
   <h3>"Your account verification is still in progress. We appreciate your patience as we ensure the security and integrity of our platform."</h3>
 <% end %>
 
-<div><%= @trader.first_name %></div>
-<div><%= @trader.last_name %></div>
-<div><%= @trader.email %></div>
-<div>Wallet Balance: $<%= @trader.balance %></div>
+<div>
+  <div>
+    <h3>Full Name</h3>
+    <p><%= @trader.first_name %> <%= @trader.last_name %></p>
+  </div>
 
-<% if @trader.approved? && @trader.balance <= 0 %>
-  <%= link_to "Initialize Balance", balance_new_trader_path(@trader) %>
-<% end %>
-<br>
+  <div>
+    <h3>Email Address</h3>
+    <p><%= @trader.email %></p>
+  </div>
 
+  <div>
+    <h3>Wallet Balance</h3>
+    <% if @trader.approved? && @trader.balance <= 0 %>
+      <%= link_to "Initialize Balance", balance_new_trader_path(@trader) %>
+    <% else %>
+      <p>$ <%= format_decimal_with_commas(@trader.balance) %></p>
+    <% end %>
+  </div>
+
+  <div>
+    <h3>Account Status</h3>
+    <% if @trader.approved %>
+      <p>Active</p>
+    <% else %>
+      <p>Pending</p>
+    <% end %>
+  </div>
+
+  <div>
+    <h3>Portfolio Value</h3>
+    <p>$ <%=  format_decimal_with_commas(@trader.stocks.sum(:current_value)) %></p>
+  </div>
+</div>
+</br>
+
+<table border="1">
+  <thead>
+  <tr>
+      <th colspan="8"> Most Active Stocks </th>
+  </tr>
+  </thead>
+  <thead>
 <table>
   <thead>
     <tr class="stock-list">
@@ -29,9 +62,14 @@
   </thead>
   <tbody>
     <% cache('quotes_table', expires_in: 1.hour) do %>
-      <% @quotes.each do |quote| %>
+      <% if @quotes.nil? || @quotes.empty? %>
+      <tr>
+        <td colspan="8" style="text-align: center;">-- Data is currently unavailable. Please try again later. --</td>
+      </tr>
+      <% else %>
+        <% @quotes.each do |quote| %>
           <tr class="table-data stock-list">
-            
+
             <td>
               <%= link_to trader_path(quote.symbol), class:"table-stock-id" do %>
               <img class="company-logo" src="<%= get_logo(quote.symbol) %>" alt="Company Logo">
@@ -41,13 +79,13 @@
               </span>
               <% end %>
             </td>
-            
+
             <td>
               <%= link_to trader_path(quote.symbol) do %>
                 $<%= format_decimal_with_commas(quote.market_cap) %>
               <% end %>
             </td>
-            
+
             <td>
               <%= link_to trader_path(quote.symbol) do %>
                 $<%= format_decimal_with_commas(quote.latest_price) %>
@@ -59,21 +97,21 @@
                 <%= quote.change %>
               <% end %>
             </td>
-            
+
             <td>
               <%= link_to trader_path(quote.symbol) do %>
                 <%= quote.change_percent %>
               <% end %>
             </td>
-            
+
             <% if @trader.approved? %>
-              <td>  
+              <td>
                   <%= link_to "Buy", buy_new_trader_path(quote.symbol), class: "trader-buy-btn" %>
               </td>
             <% end %>
           </tr>
-        
       <% end %>
+    <% end %>
     <% end %>
   </tbody>
 </table>
