@@ -1,11 +1,11 @@
 <h1>This is the trader page</h1>
 
 <% if !@trader.approved? %>
-    <h3>"Your account verification is still in progress. We appreciate your patience as we ensure the security and integrity of our platform."</h3>
+  <h3>"Your account verification is still in progress. We appreciate your patience as we ensure the security and integrity of our platform."</h3>
 <% end %>
 
-<div><%= @trader.first_name%></div>
-<div><%= @trader.last_name%></div>
+<div><%= @trader.first_name %></div>
+<div><%= @trader.last_name %></div>
 <div><%= @trader.email %></div>
 <div>Wallet Balance: $<%= @trader.balance %></div>
 
@@ -14,46 +14,66 @@
 <% end %>
 <br>
 
-<h2>Stocks</h2>
-<table border="1">
+<table>
   <thead>
     <tr>
-      <th>Logo</th>
-      <th>Company Name</th>
-      <th>Symbol</th>
+      <th>Stocks</th>
       <th>Market Cap</th>
       <th>Price</th>
       <th>Change</th>
       <th>% Change</th>
-      <th>Action</th>
+      <% if @trader.approved? %>
+        <th>Action</th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
     <% cache('quotes_table', expires_in: 1.hour) do %>
       <% @quotes.each do |quote| %>
-        <tr>
-          <td><img src="<%= get_logo(quote.symbol) %>" alt="Company Logo" style="max-width: 100px; max-height: 100px;"></td>
-          <td><%= quote.company_name %></td>
-          <td><%= quote.symbol %></td>
-          <td><%= quote.market_cap %></td>
-          <td><%= quote.latest_price %></td>
-          <td><%= quote.change %></td>
-          <td><%= quote.change_percent %></td>
-          <td><%= link_to "View", trader_path(quote.symbol) %>
-              |
-              <% if @trader.approved? %>
-                <%= link_to "Buy", buy_new_trader_path(quote.symbol) %>
-              <% end %></td>
-        </tr>
+          <tr class="table-data stock-list">
+            
+            <td>
+              <%= link_to trader_path(quote.symbol), class:"table-stock-id" do %>
+              <img class="company-logo" src="<%= get_logo(quote.symbol) %>" alt="Company Logo">
+              <span class="stock-text-info">
+                <div class="stock-symbol"><%= quote.symbol %></div>
+                <div class="company-name"><%= quote.company_name %></div>
+              </span>
+              <% end %>
+            </td>
+            
+            <td>
+              <%= link_to trader_path(quote.symbol) do %>
+                <%= quote.market_cap %>
+              <% end %>
+            </td>
+            
+            <td>
+              <%= link_to trader_path(quote.symbol) do %>
+                <%= quote.latest_price %>
+              <% end %>
+            </td>
+
+            <td>
+              <%= link_to trader_path(quote.symbol) do %>
+                <%= quote.change %>
+              <% end %>
+            </td>
+            
+            <td>
+              <%= link_to trader_path(quote.symbol) do %>
+                <%= quote.change_percent %>
+              <% end %>
+            </td>
+            
+            <% if @trader.approved? %>
+              <td>  
+                  <%= link_to "Buy", buy_new_trader_path(quote.symbol), class: "trader-buy-btn" %>
+              </td>
+            <% end %>
+          </tr>
+        
       <% end %>
     <% end %>
   </tbody>
 </table>
-
-<%= link_to "My Portfolio", portfolio_trader_path(@trader) %>
-<%= link_to "All Transactions", transaction_trader_path(@trader) %>
-
-<%= button_to "Sign Out", destroy_user_session_path, method: :delete %>
-
-
-<%console%>

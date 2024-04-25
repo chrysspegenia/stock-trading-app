@@ -5,7 +5,7 @@
   <label> User Wallet: </label> $<%= @trader.balance %>
 </div>
 
-<table border="1">
+<table>
   <thead>
     <tr>
       <th>Date</th>
@@ -20,7 +20,7 @@
   </thead>
   <tbody>
     <% @transactions.each do |transaction| %>
-      <tr>
+      <tr class="table-data">
         <td><%= transaction.created_at.to_date %></td>
         <td><%= transaction.created_at.strftime('%H:%M:%S') %></td>
         <td><%= transaction.stock.symbol %></td>
@@ -33,5 +33,3 @@
     <% end %>
   </tbody>
 </table>
-
-<div><%= link_to "Main", traders_path %></div>

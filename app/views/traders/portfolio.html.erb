@@ -5,7 +5,7 @@
   <label> User Wallet: </label> $<%= @trader.balance %>
 </div>
 
-<table border="1">
+<table>
   <thead>
     <tr>
       <th>Symbol</th>
@@ -20,7 +20,7 @@
   </thead>
   <tbody>
     <% @stocks.each do |stock| %>
-      <tr>
+      <tr class="table-data">
         <td><%= stock.symbol %></td>
         <td><%= stock.name %></td>
         <td>$<%= stock.price %></td>
@@ -40,5 +40,3 @@
     <% end %>
   </tbody>
 </table>
-
-<div><%= link_to "Main", traders_path %></div>
