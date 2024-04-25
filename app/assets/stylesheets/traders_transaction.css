@@ -3,24 +3,11 @@
   text-align: center;
 }
 
-.transaction-history-data td:nth-child(5),
+.transaction-history-data th:nth-child(6),
+.transaction-history-data th:nth-child(7),
+.transaction-history-data th:nth-child(8),
 .transaction-history-data td:nth-child(6),
+.transaction-history-data td:nth-child(7),
 .transaction-history-data td:nth-child(8) {
   text-align: right;
 }
-
-/* .transaction-history-data td.action {
-  padding: 5px;
-  vertical-align: middle;
-  text-align: center;
-}
-
-.transaction-history-data td.action.buy {
-  border: 1px solid #28a745;
-  color: #28a745;
-}
-
-.transaction-history-data td.action.sell {
-  border: 1px solid #f02c00;
-  color: #f02c00;
-} */

@@ -7,14 +7,14 @@
 
 <table>
   <thead>
-    <tr>
+    <tr class="transaction-history-data">
       <th>Date</th>
       <th>Time</th>
       <th>Symbol</th>
       <th>Name</th>
+      <th>Action</th>
       <th>Quantity</th>
       <th>Price</th>
-      <th>Action</th>
       <th>Total Amount</th>
     </tr>
   </thead>
@@ -25,11 +25,13 @@
         <td><%= transaction.created_at.strftime('%H:%M:%S') %></td>
         <td><%= transaction.stock.symbol %></td>
         <td><%= transaction.stock.name %></td>
+        <td> 
+          <span class="action <%= transaction.action == 'buy' ? "buy" : "sell"%>">
+            <%= transaction.action %>
+          </span>
+        </td>
         <td><%= transaction.quantity %></td>
         <td>$<%= format_decimal_with_commas(transaction.price) %></td>
-        <td class="action <%= transaction.action == 'buy' ? "buy" : "sell"%>">
-            <%= transaction.action %>
-        </td>
         <td>$<%= format_decimal_with_commas(transaction.total_amount) %></td>
       </tr>
     <% end %>
