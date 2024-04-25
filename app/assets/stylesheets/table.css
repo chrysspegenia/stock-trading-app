@@ -43,7 +43,7 @@ tr th {
   place-items: center;
 }
 
-.table-data td:nth-child(6) {
+.table-data td:nth-child(4) {
   padding: 5px;
 }
 
@@ -53,4 +53,10 @@ tr th {
 
 .table-data td span.sell {
   background: #f02c00;
+}
+
+.table-data td:nth-child(5),
+.table-data td:nth-child(6),
+.table-data td:nth-child(7) {
+  text-align: right;
 }
