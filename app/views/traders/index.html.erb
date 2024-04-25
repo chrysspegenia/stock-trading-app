@@ -1,7 +1,7 @@
 <h1>This is the trader page</h1>
 
 <% if !@trader.approved? %>
-    <h3>"Your account verification is still in progress. We appreciate your patience as we ensure the security and integrity of our platform."</h3>
+  <h3>"Your account verification is still in progress. We appreciate your patience as we ensure the security and integrity of our platform."</h3>
 <% end %>
 
 <div>
@@ -20,7 +20,7 @@
     <% if @trader.approved? && @trader.balance <= 0 %>
       <%= link_to "Initialize Balance", balance_new_trader_path(@trader) %>
     <% else %>
-      <p>$ <%= @trader.balance %></p>
+      <p>$ <%= format_decimal_with_commas(@trader.balance) %></p>
     <% end %>
   </div>
 
@@ -35,7 +35,7 @@
 
   <div>
     <h3>Portfolio Value</h3>
-    <p>$ <%= @trader.stocks.sum(:current_value) %></p>
+    <p>$ <%=  format_decimal_with_commas(@trader.stocks.sum(:current_value)) %></p>
   </div>
 </div>
 </br>
@@ -82,16 +82,17 @@
   </tr>
   </thead>
   <thead>
+<table>
   <thead>
     <tr>
-      <th>Logo</th>
-      <th>Company Name</th>
-      <th>Symbol</th>
+      <th>Stocks</th>
       <th>Market Cap</th>
       <th>Price</th>
       <th>Change</th>
       <th>% Change</th>
-      <th>Action</th>
+      <% if @trader.approved? %>
+        <th>Action</th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
@@ -102,27 +103,50 @@
       </tr>
       <% else %>
         <% @quotes.each do |quote| %>
-          <tr>
-            <td><img src="<%= get_logo(quote.symbol) %>" alt="Company Logo" style="max-width: 100px; max-height: 100px;"></td>
-            <td><%= quote.company_name %></td>
-            <td><%= quote.symbol %></td>
-            <td>$<%= number_with_delimiter(quote.market_cap) %>.00</td>
-            <td>$<%= quote.latest_price %></td>
-            <td><%= quote.change %></td>
-            <td><%= quote.change_percent %></td>
+          <tr class="table-data stock-list">
+
             <td>
-              <%= link_to "View", trader_path(quote.symbol) %>
-              |
-              <% if @trader.approved? %>
-                <%= link_to "Buy", buy_new_trader_path(quote.symbol) %>
+              <%= link_to trader_path(quote.symbol), class:"table-stock-id" do %>
+              <img class="company-logo" src="<%= get_logo(quote.symbol) %>" alt="Company Logo">
+              <span class="stock-text-info">
+                <div class="stock-symbol"><%= quote.symbol %></div>
+                <div class="company-name"><%= quote.company_name %></div>
+              </span>
               <% end %>
             </td>
+
+            <td>
+              <%= link_to trader_path(quote.symbol) do %>
+                $<%= format_decimal_with_commas(quote.market_cap) %>
+              <% end %>
+            </td>
+
+            <td>
+              <%= link_to trader_path(quote.symbol) do %>
+                $<%= format_decimal_with_commas(quote.latest_price) %>
+              <% end %>
+            </td>
+
+            <td>
+              <%= link_to trader_path(quote.symbol) do %>
+                <%= quote.change %>
+              <% end %>
+            </td>
+
+            <td>
+              <%= link_to trader_path(quote.symbol) do %>
+                <%= quote.change_percent %>
+              <% end %>
+            </td>
+
+            <% if @trader.approved? %>
+              <td>
+                  <%= link_to "Buy", buy_new_trader_path(quote.symbol), class: "trader-buy-btn" %>
+              </td>
+            <% end %>
           </tr>
-        <% end %>
       <% end %>
+    <% end %>
     <% end %>
   </tbody>
 </table>
-
-
-<%console%>

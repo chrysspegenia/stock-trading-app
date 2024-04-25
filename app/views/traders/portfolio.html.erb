@@ -5,7 +5,8 @@
   <label> User Wallet: </label> $<%= @trader.balance %>
   <label> Portfolio Value: </label> $<%= @stocks.sum(:current_value) %>
 </div>
-<table border="1">
+
+<table>
   <thead>
     <tr>
       <th>Symbol</th>
@@ -20,14 +21,14 @@
   </thead>
   <tbody>
     <% @stocks.each do |stock| %>
-      <tr>
+      <tr class="table-data">
         <td><%= stock.symbol %></td>
         <td><%= stock.name %></td>
-        <td>$<%= stock.price %></td>
-        <td>$<%= stock.latest_price %></td>
+        <td>$<%= format_decimal_with_commas(stock.price) %></td>
+        <td>$<%= format_decimal_with_commas(stock.latest_price) %></td>
         <td><%= stock.shares %></td>
-        <td>$<%= stock.price_per_share %></td>
-        <td>$<%= stock.current_value %></td>
+        <td>$<%= format_decimal_with_commas(stock.price_per_share) %></td>
+        <td>$<%= format_decimal_with_commas(stock.current_value) %></td>
         <td>
         <%= link_to "View", trader_path(stock.symbol) %>
         <% if @trader.approved? %>
@@ -40,5 +41,3 @@
     <% end %>
   </tbody>
 </table>
-
-<div><%= link_to "Main", traders_path %></div>
