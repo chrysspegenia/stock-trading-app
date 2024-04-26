@@ -18,6 +18,10 @@
     <h3>Portfolio Value</h3>
     <p>$ <%=  format_decimal_with_commas(@trader.stocks.sum(:current_value)) %></p>
   </div>
+  
+  <%= link_to "Edit Profile", edit_trader_path(@trader) %>
+
+
 </div>
 
 <table>
@@ -66,13 +70,13 @@
         <td>
           <%= link_to trader_path(stock.symbol) do %>
               <%= stock.shares %>
-          <% end %>      
+          <% end %>
         </td>
 
         <td>
           <%= link_to trader_path(stock.symbol) do %>
               $<%= format_decimal_with_commas(stock.price_per_share) %>
-          <% end %> 
+          <% end %>
         </td>
 
         <td>
@@ -84,7 +88,7 @@
         <% if @trader.approved? %>
           <td class="action-column">
               <%= link_to "Buy", buy_new_trader_path(stock.symbol), class: "portfolio-buy-btn" %>
-              <%= link_to "Sell", sell_new_trader_path(stock.symbol), class: "portfolio-sell-btn" %> 
+              <%= link_to "Sell", sell_new_trader_path(stock.symbol), class: "portfolio-sell-btn" %>
           </td>
         <% end %>
 

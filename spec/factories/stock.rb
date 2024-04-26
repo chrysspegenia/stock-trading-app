@@ -1,6 +1,8 @@
+require 'faker'
+
 FactoryBot.define do
   factory :stock do
-    symbol { "AAPL" }
+    symbol { Faker::Finance.ticker }
     association :user
   end
 end

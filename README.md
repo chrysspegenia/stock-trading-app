@@ -28,10 +28,9 @@
 - [Boxicons](https://boxicons.com/usage)
 - [IEX Ruby Client - IEX Finance API](https://github.com/dblock/iex-ruby-client)
 - [Whenever Gem](https://github.com/javan/whenever)
-- [Rspec-rails](https://github.com/rspec/rspec-rails?tab=readme-ov-file)
-- [factory_bot_rails](https://github.com/thoughtbot/factory_bot_rails)
 
-## Resouces
+
+## Resources
 
 - [Devise Wiki - Admin Role](https://github.com/heartcombo/devise/wiki/How-To:-Add-an-Admin-Role)
 - [Devise Wiki - Confirmable](https://github.com/heartcombo/devise/wiki/How-To:-Add-:confirmable-to-Users)
@@ -39,9 +38,14 @@
 - [Action Mailer Configuration](https://guides.rubyonrails.org/action_mailer_basics.html#action-mailer-configuration)
 - [Rails layout templates](https://medium.com/@shachsan/how-to-utilize-rails-layouts-to-keep-our-view-templates-less-clutter-1f6f50a1ef29)
 
+## Testing Gems
+- [Rspec-rails](https://github.com/rspec/rspec-rails?tab=readme-ov-file)
+- [factory_bot_rails](https://github.com/thoughtbot/factory_bot_rails)
+- [Faker](https://github.com/faker-ruby/faker)
+
 ## Problems and solutions
 
 - [Devise redirect after login fail](https://stackoverflow.com/questions/5832631/devise-redirect-after-login-fail)
   --Modify devise route when input invalid credentials
 - [Devise redirect on sign up failure](https://stackoverflow.com/questions/6240141/devise-redirect-on-sign-up-failure?rq=3)
-  --Modify devise route upon invalid registration
+  --Modify devise route upon invalid 
