@@ -1,27 +1,42 @@
-<h1>Portfolio</h1>
+<h1 class="portfolio-header">Portfolio</h1>
 
-<div>
-  <label> User Name: </label> <%= @trader.first_name %> <%= @trader.last_name %>
-  <label> User Wallet: </label> $<%= @trader.balance %>
-  <label> Portfolio Value: </label> $<%= @stocks.sum(:current_value) %>
-  
-  <div>
-    <h3>Account Status</h3>
-    <% if @trader.approved %>
-      <p>Active</p>
-    <% else %>
-      <p>Pending</p>
+<main class="account-details-wrapper">
+    <i class='bx bx-user account-photo' ></i>
+
+    <span class="divider"></span>
+    
+    <section class="account-text-info">
+        <h2><%= @trader.first_name %> <%= @trader.last_name %></h2>
+
+        <p><%= @trader.email %></p>
+
+      <% if @trader.approved %>
+        <span class="verification-status verified"><i class='bx bxs-badge-check'></i>Verified</span>
+      <% else %>
+        <span class="verification-status unverified"><i class='bx bxs-checkbox-minus' ></i>Non-Verified</span>
+      <% end %>
+    </section>
+
+    <%= link_to(edit_trader_path(@trader), class: "edit-btn") do %>
+        <i class='bx bx-edit-alt' ></i>
     <% end %>
-  </div>
 
-  <div>
-    <h3>Portfolio Value</h3>
-    <p>$ <%=  format_decimal_with_commas(@trader.stocks.sum(:current_value)) %></p>
-  </div>
-  
-  <%= link_to "Edit Profile", edit_trader_path(@trader) %>
+</main>
 
+<div class="trader-assets-container">
+    <span>
+      <h2>Balance Remaining</h2>
+      <p>$<%= @trader.balance %></p>
+    </span>
 
+    <span>
+      <h2>Portfolio Value</h2>
+      <p>$<%= @stocks.sum(:current_value) %></p>
+    </span>
+
+    <% if @trader.approved? %>
+      <%= link_to "Deposit", balance_new_trader_path(@trader), class:"deposit-btn" %>
+    <% end %>
 </div>
 
 <table>

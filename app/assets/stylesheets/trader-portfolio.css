@@ -1,3 +1,27 @@
+.portfolio-header {
+  color: #fff;
+}
+
+/* Css for trader info is located at admin-show.css */
+
+/* css for balance section located at trader-index */
+
+.verification-status {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.verification-status.verified .bx {
+  color: #28a745;
+  font-size: 1.4rem;
+}
+
+.verification-status.unverified .bx {
+  color: #f7a600;
+  font-size: 1.4rem;
+}
+
 .portfolio-data td:nth-child(3),
 .portfolio-data td:nth-child(4),
 .portfolio-data td:nth-child(5),
