@@ -1,44 +1,17 @@
-<h1>This is the trader page</h1>
-
-<% if !@trader.approved? %>
-  <h3>"Your account verification is still in progress. We appreciate your patience as we ensure the security and integrity of our platform."</h3>
+<% if !@trader.approved? %>%
+  <h3 class="non-approved-message">Your account verification is still in progress. We appreciate your patience as we ensure the security and integrity of our platform.</h3>
 <% end %>
 
-<div>
-  <div>
-    <h3>Full Name</h3>
-    <p><%= @trader.first_name %> <%= @trader.last_name %></p>
-  </div>
+<div class="trader-assets-container">
+    <span>
+      <h2>Total Assets</h2>
+      <p>$ <%= format_decimal_with_commas(@trader.balance + @trader.stocks.sum(:current_value)) %></p>
+    </span>
 
-  <div>
-    <h3>Email Address</h3>
-    <p><%= @trader.email %></p>
-  </div>
-
-  <div>
-    <h3>Wallet Balance</h3>
-    <% if @trader.approved? && @trader.balance <= 0 %>
-      <%= link_to "Initialize Balance", balance_new_trader_path(@trader) %>
-    <% else %>
-      <p>$ <%= format_decimal_with_commas(@trader.balance) %></p>
+    <% if @trader.approved? %>
+      <%= link_to "Deposit", balance_new_trader_path(@trader), class:"deposit-btn" %>
     <% end %>
-  </div>
-
-  <div>
-    <h3>Account Status</h3>
-    <% if @trader.approved %>
-      <p>Active</p>
-    <% else %>
-      <p>Pending</p>
-    <% end %>
-  </div>
-
-  <div>
-    <h3>Portfolio Value</h3>
-    <p>$ <%=  format_decimal_with_commas(@trader.stocks.sum(:current_value)) %></p>
-  </div>
 </div>
-</br>
 
 <table class="stock-list-table">
   <span class="table-title">Top-Performering Stocks</span>

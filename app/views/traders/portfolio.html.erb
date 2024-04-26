@@ -4,6 +4,20 @@
   <label> User Name: </label> <%= @trader.first_name %> <%= @trader.last_name %>
   <label> User Wallet: </label> $<%= @trader.balance %>
   <label> Portfolio Value: </label> $<%= @stocks.sum(:current_value) %>
+  
+  <div>
+    <h3>Account Status</h3>
+    <% if @trader.approved %>
+      <p>Active</p>
+    <% else %>
+      <p>Pending</p>
+    <% end %>
+  </div>
+
+  <div>
+    <h3>Portfolio Value</h3>
+    <p>$ <%=  format_decimal_with_commas(@trader.stocks.sum(:current_value)) %></p>
+  </div>
 </div>
 
 <table>
