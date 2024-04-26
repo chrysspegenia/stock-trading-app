@@ -6,7 +6,7 @@
   <h2>Edit Personal Details</h2>
 
   <div class="admin-form-box">
-    <%= form_with(model: @trader, url: admin_trader_path(@trader), method: :patch) do |form| %>
+    <%= form_with(model: @trader, url: trader_path(@trader), method: :patch) do |form| %>
       <% if @trader.errors.any? %>
         <div style="color: red">
           <h2><%= pluralize(@trader.errors.count, "error") %> prohibited this task from being saved:</h2>

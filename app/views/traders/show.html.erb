@@ -1,37 +1,39 @@
-<h1>Company Details</h1>
-
-<table>
+<table border="1">
+  <thead>
+  <tr>
+    <th colspan="9">Company Details</th>
+  </tr>
+  </thead>
+  <thead>
+    <tr>
+      <th>Company Symbol</th>
+      <th>Logo</th>
+      <th>Company Name</th>
+      <th>Industry</th>
+      <th>Website</th>
+      <th>CEO</th>
+      <th>Sector</th>
+      <th>Action</th>
+    </tr>
+  </thead>
   <tbody>
     <tr>
-      <td><strong>Company Symbol:</strong></td>
       <td><%= @company.symbol %></td>
-      <td><strong>Logo:</strong></td>
-      <td><img src="<%= @logo.url %>" alt="Company Logo" style="max-width: 100px; max-height: 100px;"></td>
-    </tr>
-    <tr>
-      <td><strong>Company Name:</strong></td>
+      <td><img src="<%= @logo.url %>" alt="Company Logo" style="max-width: 75px; max-height: 75px; border-radius: 50%;"></td>
       <td><%= @company.company_name %></td>
-      <td><strong>Industry:</strong></td>
       <td><%= @company.industry %></td>
-    </tr>
-    <tr>
-      <td><strong>Website:</strong></td>
-      <td><%= @company.website %></td>
-      <td><strong>CEO:</strong></td>
+      <td>
+        <a href="<%= @company.website %>">
+        <%= @company.website %> </a>
+      </td>
       <td><%= @company.ceo %></td>
-    </tr>
-    <tr>
-      <td><strong>Sector:</strong></td>
       <td><%= @company.sector %></td>
-      <td></td>
-      <td></td>
+
+      <td>
+        <% if @trader.approved? %>
+          <%= link_to "Buy", buy_new_trader_path(company_symbol: @company.symbol) %>
+        <% end %>
+      </td>
     </tr>
   </tbody>
 </table>
-<div> <strong>Description:</strong>
-<%= @company.description %> </div>
-
-<% if @trader.approved? %>
-  <%= link_to "Buy", buy_new_trader_path(@company.symbol) %>
-<% end %>
-<div><%= link_to "Main", traders_path %></div>
