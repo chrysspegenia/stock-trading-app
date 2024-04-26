@@ -19,6 +19,6 @@
 
 # Learn more: http://github.com/javan/whenever
 
-every 30.minutes do
+every 10.minutes do
   command "cd /home/chad/workspace/stock-trading-app && RAILS_ENV=development /home/chad/.asdf/shims/bundle exec bin/rails runner 'Stock.update_latest_prices' >> /home/chad/workspace/stock-trading-app/log/logfile.log 2>&1"
 end

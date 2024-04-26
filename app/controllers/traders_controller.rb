@@ -33,7 +33,7 @@ class TradersController < ApplicationController
 
     #GET traders/:id/portfolio
     def portfolio
-      @stocks = current_user.stocks.all
+      @stocks = current_user.stocks.where('shares > ?', 0)
     end
 
     #GET traders/:id/transaction
@@ -58,7 +58,7 @@ class TradersController < ApplicationController
       else
         flash[:alert] = 'Insufficient balance to make the purchase.'
       end
-      redirect_to traders_path
+      redirect_to portfolio_trader_path
     end
 
     #GET /traders/:symbol/sell_new  ... :symbol value is the params[:id]
@@ -69,8 +69,8 @@ class TradersController < ApplicationController
 
     #POST /traders/:id/sell
     def sell
-      symbol, quantity, action, company_name = params.values_at(:symbol, :quantity, :action, :company_name)
-      price = BigDecimal(iex_client.quote(symbol).latest_price.to_s)
+      symbol, quantity, action, company_name, price = params.values_at(:symbol, :quantity, :action, :company_name, :price)
+      price = price.to_i
       stock = Stock.find_by(symbol: symbol, user_id: current_user.id)
 
       if stock && stock.shares >= quantity.to_i
@@ -79,7 +79,7 @@ class TradersController < ApplicationController
       else
         flash[:alert] = 'Insufficient quantity of shares to sell.'
       end
-      redirect_to traders_path
+      redirect_to portfolio_trader_path
     end
 
     #GET /traders/:id/balance_new
@@ -94,7 +94,7 @@ class TradersController < ApplicationController
       else
         flash[:alert] = 'Failed to save the wallet balance.'
       end
-      redirect_to traders_path
+      redirect_to portfolio_trader_path
     end
 
     private
@@ -113,7 +113,7 @@ class TradersController < ApplicationController
 
     def iex_client
       @iex_client ||= IEX::Api::Client.new
-   end
+    end
 
     def get_logo(symbol)
       iex_client.logo(symbol).url

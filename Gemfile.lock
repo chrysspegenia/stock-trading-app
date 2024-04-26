@@ -96,6 +96,9 @@ GEM
     chronic (0.10.2)
     concurrent-ruby (1.2.3)
     connection_pool (2.4.1)
+    crack (1.0.0)
+      bigdecimal
+      rexml
     crass (1.0.6)
     date (3.3.4)
     debug (1.9.2)
@@ -125,6 +128,7 @@ GEM
       net-http
     globalid (1.2.1)
       activesupport (>= 6.1)
+    hashdiff (1.1.0)
     hashie (5.0.0)
     i18n (1.14.4)
       concurrent-ruby (~> 1.0)
@@ -289,6 +293,10 @@ GEM
       activemodel (>= 6.0.0)
       bindex (>= 0.4.0)
       railties (>= 6.0.0)
+    webmock (3.23.0)
+      addressable (>= 2.8.0)
+      crack (>= 0.3.2)
+      hashdiff (>= 0.4.0, < 2.0.0)
     webrick (1.8.1)
     websocket (1.2.10)
     websocket-driver (0.7.6)
@@ -328,6 +336,7 @@ DEPENDENCIES
   turbo-rails
   tzinfo-data
   web-console
+  webmock
   whenever
 
 RUBY VERSION

@@ -16,9 +16,13 @@ class Stock < ApplicationRecord
   def self.update_portfolio(stock, quantity, price)
     stock.price = price
     stock.shares += quantity
-    stock.current_value += quantity * price
-    stock.price_per_share = calculate_price_per_share(stock.current_value, stock.shares)
     stock.latest_price = price
+    stock.save
+
+    stock.current_value = stock.shares * stock.price
+    stock.save
+
+    stock.price_per_share = calculate_price_per_share(stock.current_value, stock.shares)
     stock.save
   end
 
