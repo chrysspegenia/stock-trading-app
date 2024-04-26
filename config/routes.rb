@@ -24,7 +24,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :traders, only: [:index, :show] do
+  resources :traders do
     member do
       get 'portfolio'
       get 'transaction'

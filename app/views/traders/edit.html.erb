@@ -1,0 +1,26 @@
+<div>
+  <h2>Edit Account Details</h2>
+
+  <div>
+    <%= form_with(model: @trader, url: trader_path(@trader), method: :patch) do |form| %>
+      <div>
+        <%= form.text_field :first_name %>
+        <%= form.label :first_name %>
+      </div>
+
+      <div>
+        <%= form.text_field :last_name %>
+        <%= form.label :last_name %>
+      </div>
+
+      <div>
+        <%= form.text_field :email %>
+        <%= form.label :email %>
+      </div>
+
+      <div>
+        <%= button_to "Update", new_registration_path(@trader) %>
+      </div>
+    <% end %>
+  </div>
+</div>

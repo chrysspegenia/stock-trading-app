@@ -1,12 +1,12 @@
 class TradersController < ApplicationController
     before_action :authorize_trader
     before_action :check_approval_status, only: [:buy_new, :buy, :sell_new, :sell, :balance, :balance_new]
-    before_action :set_trader, only: [:index, :show, :portfolio, :transaction, :buy_new, :sell_new, :balance_new]
+    before_action :set_trader, only: [:index, :show, :edit, :update, :portfolio, :transaction, :buy_new, :sell_new, :balance_new]
     after_action :process_transaction, only: [:buy, :sell]
     helper_method :get_logo, :iex_client
 
     layout 'trader_dashboard'
-    
+
     #GET /traders
     def index
         @quotes = iex_client.stock_market_list(:mostactive)
@@ -17,6 +17,19 @@ class TradersController < ApplicationController
         @company = iex_client.company(params[:id])
         @logo = iex_client.logo(params[:id])
     end
+
+    #GET /traders/:id/edit
+    def edit
+    end
+
+    #PATCH traders/:id
+    def update
+      if @trader.update(trader_params)
+          redirect_to admin_trader_path(@trader), notice: "Trader was successfully updated."
+      else
+          render :edit, status: :unprocessable_entity
+      end
+   end
 
     #GET traders/:id/portfolio
     def portfolio
@@ -92,6 +105,10 @@ class TradersController < ApplicationController
 
     def set_trader
       @trader = current_user
+    end
+
+    def trader_params
+      params.require(:user).permit(:first_name, :last_name, :email)
     end
 
     def iex_client
