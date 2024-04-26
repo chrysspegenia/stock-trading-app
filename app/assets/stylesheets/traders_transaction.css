@@ -1,3 +1,8 @@
+.transaction-page-header {
+  color: #fff;
+  margin-bottom: 1em;
+}
+
 .transaction-history-data td:first-child,
 .transaction-history-data td:nth-child(2) {
   text-align: center;
