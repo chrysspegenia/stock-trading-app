@@ -1,26 +1,47 @@
-<div>
-  <h2>Edit Account Details</h2>
+<%= link_to(portfolio_trader_path(@trader), class:"edit-return-btn") do %>
+  <i class='bx bxs-chevrons-left'></i>
+<% end %>
 
-  <div>
-    <%= form_with(model: @trader, url: trader_path(@trader), method: :patch) do |form| %>
-      <div>
-        <%= form.text_field :first_name %>
+<div class="admin-edit-form">
+  <h2>Edit Personal Details</h2>
+
+  <div class="admin-form-box">
+    <%= form_with(model: @trader, url: admin_trader_path(@trader), method: :patch) do |form| %>
+      <% if @trader.errors.any? %>
+        <div style="color: red">
+          <h2><%= pluralize(@trader.errors.count, "error") %> prohibited this task from being saved:</h2>
+
+          <ul>
+            <% @trader.errors.each do |error| %>
+              <li><%= error.full_message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="input-box">
+        <%= form.text_field :first_name, autofocus: true, required: true %>
         <%= form.label :first_name %>
+        <i class='bx bxs-user'></i>
       </div>
 
-      <div>
-        <%= form.text_field :last_name %>
+      <div class="input-box">
+        <%= form.text_field :last_name, autofocus: true, required: true%>
         <%= form.label :last_name %>
+        <i class='bx bxs-user'></i>
       </div>
 
-      <div>
-        <%= form.text_field :email %>
+      <div class="input-box">
+        <%= form.text_field :email, autofocus: true, required: true %>
         <%= form.label :email %>
+        <i class='bx bxs-envelope'></i>
       </div>
 
-      <div>
-        <%= button_to "Update", new_registration_path(@trader) %>
+      <div class="logreg-link">
+        <%# <%= form.submit %>
+        <%= button_to "Update", new_registration_path(@trader), data: {turbo_frame: "_top"}, class: "form-btn animation" %>
       </div>
     <% end %>
   </div>
+
 </div>
