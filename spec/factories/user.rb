@@ -7,8 +7,10 @@ FactoryBot.define do
     email { Faker::Internet.email }
     password { Faker::Internet.password(min_length: 6) }
     confirmed_at { Time.now }
-    admin { false }
     approved { true }
     balance { 1000.00 }
+
+    factory :user_new do
+    end
   end
 end
