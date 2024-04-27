@@ -4,7 +4,7 @@
     <i class='bx bx-user account-photo' ></i>
 
     <span class="divider"></span>
-    
+
     <section class="account-text-info">
         <h2><%= @trader.first_name %> <%= @trader.last_name %></h2>
 
@@ -26,12 +26,12 @@
 <div class="trader-assets-container">
     <span>
       <h2>Balance Remaining</h2>
-      <p>$<%= @trader.balance %></p>
+      <p>$<%= format_decimal_with_commas(@trader.balance) %></p>
     </span>
 
     <span>
       <h2>Portfolio Value</h2>
-      <p>$<%= @stocks.sum(:current_value) %></p>
+      <p>$<%= format_decimal_with_commas(@stocks.sum(:current_value)) %></p>
     </span>
 
     <% if @trader.approved? %>
