@@ -16,6 +16,7 @@ class TradersController < ApplicationController
     def show
         @company = iex_client.company(params[:id])
         @logo = iex_client.logo(params[:id])
+        @quote = iex_client.quote(params[:id])
     end
 
     #GET /traders/:id/edit
