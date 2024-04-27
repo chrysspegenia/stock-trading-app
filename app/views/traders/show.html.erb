@@ -1,39 +1,61 @@
-<table border="1">
-  <thead>
-  <tr>
-    <th colspan="9">Company Details</th>
-  </tr>
-  </thead>
-  <thead>
-    <tr>
-      <th>Company Symbol</th>
-      <th>Logo</th>
-      <th>Company Name</th>
-      <th>Industry</th>
-      <th>Website</th>
-      <th>CEO</th>
-      <th>Sector</th>
-      <th>Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><%= @company.symbol %></td>
-      <td><img src="<%= @logo.url %>" alt="Company Logo" style="max-width: 75px; max-height: 75px; border-radius: 50%;"></td>
-      <td><%= @company.company_name %></td>
-      <td><%= @company.industry %></td>
-      <td>
-        <a href="<%= @company.website %>">
-        <%= @company.website %> </a>
-      </td>
-      <td><%= @company.ceo %></td>
-      <td><%= @company.sector %></td>
+<main class="trader-show-wrapper">
+  <section class="stock-data-wrapper">
+    <div class="stock-logo-name">
+        <img src="<%= @logo.url %>" alt="Company Logo">
+        <span>
+          <div>
+            <%= @company.company_name %>
+          </div>
+          <div>
+            <%= @company.symbol %>
+          </div>
+        </span>
+    </div>
+    <div class="stock-latest-price">
+       $<%= format_decimal_with_commas(@quote.latest_price) %>
+       <span class="stock-price-change">
+         <%= @quote.change %>%
+       </span>
+    </div>
 
-      <td>
-        <% if @trader.approved? %>
-          <%= link_to "Buy", buy_new_trader_path(company_symbol: @company.symbol) %>
-        <% end %>
-      </td>
-    </tr>
-  </tbody>
-</table>
+    <div class="stock-data">
+      <label>Market Cap</label>
+      <span>$<%= format_decimal_with_commas(@quote.market_cap) %></span>
+    </div>
+
+    <div class="stock-data">
+      <label>Percent Change</label>
+      <span><%= @quote.change_percent %></span>
+    </div>
+
+    <div class="stock-data">
+      <label>Website</label>
+      <a href="<%= @company.website %>">
+        <%= @company.website %> 
+      </a>
+    </div>
+
+    <div class="stock-data">
+      <label>CEO</label>
+      <span><%= @company.ceo %></span>
+    </div>
+
+    <div class="stock-data">
+      <label>Industry</label>
+      <span><%= @company.industry %></span>
+    </div>
+
+    <div class="stock-data">
+      <label>Sector</label>
+      <span><%= @company.sector %></span>
+    </div>
+
+    <% if @trader.approved? %>
+      <div class="stock-data stock-btns">
+          <%= link_to "Buy", buy_new_trader_path(@company.symbol), class: "buy btn" %>
+          <%= link_to "Sell", sell_new_trader_path(@company.symbol), class: "sell btn" %>
+      </div>
+    <% end %>
+  
+  </section>
+</main>
