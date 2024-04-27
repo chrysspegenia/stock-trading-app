@@ -24,7 +24,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_18_142906) do
     t.datetime "updated_at", null: false
     t.decimal "price_per_share", default: "0.0"
     t.decimal "current_value", default: "0.0"
-    t.decimal "latest_price"
+    t.decimal "latest_price", precision: 10, scale: 2
     t.index ["user_id"], name: "index_stocks_on_user_id"
   end
 
