@@ -58,6 +58,7 @@ class TradersController < ApplicationController
         @transaction.save!
       else
         flash[:alert] = 'Insufficient balance to make the purchase.'
+        render :buy_new
       end
       redirect_to portfolio_trader_path
     end
@@ -79,6 +80,7 @@ class TradersController < ApplicationController
         @transaction.save!
       else
         flash[:alert] = 'Insufficient quantity of shares to sell.'
+        render :sell_new
       end
       redirect_to portfolio_trader_path
     end

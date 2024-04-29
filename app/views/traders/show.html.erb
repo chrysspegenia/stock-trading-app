@@ -31,7 +31,7 @@
     <div class="stock-data">
       <label>Website</label>
       <a href="<%= @company.website %>">
-        <%= @company.website %> 
+        <%= @company.website %>
       </a>
     </div>
 
@@ -53,9 +53,11 @@
     <% if @trader.approved? %>
       <div class="stock-data stock-btns">
           <%= link_to "Buy", buy_new_trader_path(@company.symbol), class: "buy btn" %>
-          <%= link_to "Sell", sell_new_trader_path(@company.symbol), class: "sell btn" %>
+          <% if @trader.stocks.exists?(symbol: @company.symbol) %>
+            <%= link_to "Sell", sell_new_trader_path(@company.symbol), class: "sell btn" %>
+          <% end %>
       </div>
     <% end %>
-  
+
   </section>
 </main>
