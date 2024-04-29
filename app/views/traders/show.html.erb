@@ -60,4 +60,78 @@
     <% end %>
 
   </section>
+
+  <section class="chart-wrapper">
+    <%= candlestick_chart(
+      @chart_data,
+      class: 'chart-container',
+      theme: 'roma',
+      options:{
+        color: "#fff",
+        grid:{
+          show: true,
+        },
+        xAxis: {
+          axisTick: {
+            alignWithLabel: true
+          },
+          min: "dataMin",
+          max: "dataMax"
+          },
+        yAxis: {
+          axisTick: {
+            alignWithLabel: true
+          },
+          min: "dataMin",
+          max: "dataMax"
+        },
+        dataZoom: [
+      {
+        type: 'slider',
+        start: 0,
+        end: 100,
+        xAxisIndex: [0],
+        zoomLock: false,
+        throttle: 100,
+        moveOnMouseMove: true,
+        moveOnMouseWheel: true,
+        preventDefaultMouseMove: true
+      },
+      {
+        type: 'slider',
+        start: 0,
+        end: 100,
+        yAxisIndex: [0],
+        zoomLock: false,
+        throttle: 100,
+        moveOnMouseMove: true,
+        moveOnMouseWheel: true,
+        preventDefaultMouseMove: true
+      },
+      {
+        type: 'inside',
+        start: 0,
+        end: 100,
+        xAxisIndex: 0,
+        zoomLock: false,
+        throttle: 100,
+        moveOnMouseMove: true,
+        moveOnMouseWheel: true,
+        preventDefaultMouseMove: true
+      },
+      {
+        type: 'inside',
+        start: 0,
+        end: 100,
+        yAxisIndex: 0,
+        zoomLock: false,
+        throttle: 100,
+        moveOnMouseMove: true,
+        moveOnMouseWheel: true,
+        preventDefaultMouseMove: true
+      },
+    ],
+      })
+ %>
+  </section>
 </main>

@@ -83,3 +83,5 @@ end
 gem 'faker'
 
 gem 'webmock'
+
+gem "rails_charts"

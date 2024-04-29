@@ -17,6 +17,7 @@ class TradersController < ApplicationController
         @company = iex_client.company(params[:id])
         @logo = iex_client.logo(params[:id])
         @quote = iex_client.quote(params[:id])
+        @chart_data = Stock.fetch_chart_data(iex_client, @company.symbol)
     end
 
     #GET /traders/:id/edit

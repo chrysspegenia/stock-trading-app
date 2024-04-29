@@ -36,6 +36,23 @@ class Stock < ApplicationRecord
       stock.update(latest_price: latest_price, current_value: current_value, price_per_share: price_per_share)
     end
   end
+  
+  def self.fetch_chart_data(iex_client, ticker_symbol)
+    historical_prices = iex_client.historical_prices(ticker_symbol, {range: "6m"})
+    latest_market_price = iex_client.market[ticker_symbol]
+    today = Date.today
+
+    historical_data = historical_prices.map do |entry| 
+      [(entry.date).to_s, [entry.open, entry.close, entry.low, entry.high]] 
+    end
+
+    # historical_data << [today.to_s, [latest_market_price.open.price,
+    #                                   latest_market_price.close.price,
+    #                                   latest_market_price.low,
+    #                                   latest_market_price.high]]
+    historical_data.to_h
+end
+
 
   private
 

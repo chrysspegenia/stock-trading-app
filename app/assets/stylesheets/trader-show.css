@@ -1,9 +1,13 @@
 .trader-show-wrapper {
   width: 100%;
   height: 100%;
+  display: flex;
+  justify-content: space-around;
+  gap: 1.5em;
 }
 
 .stock-data-wrapper {
+  align-self: center;
   min-width: 450px;
   width: 30%;
   padding: 15px;
@@ -83,4 +87,27 @@
 .stock-data.stock-btns .btn.sell {
   border: 2px solid #f02c00;
   color: #f02c00;
+}
+
+.chart-wrapper {
+  flex: 1;
+  height: auto;
+  max-width: 55%;
+  border-left: 2px solid rgba(255, 255, 255, 0.3);
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+}
+
+.chart-wrapper .chart-container {
+  flex: 1;
+  width: 100%;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+.chart-container canvas {
+  width: 100%;
+  height: 100%;
 }
