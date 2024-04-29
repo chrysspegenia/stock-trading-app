@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   #   end
 
 
-  root to: 'users/custom_login_register_page#index', as: :root
+  root to: 'users/custom_login_register_page#index'
 
   namespace :admin do
     resources :traders do
