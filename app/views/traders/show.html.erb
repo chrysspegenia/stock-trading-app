@@ -64,44 +64,74 @@
   <section class="chart-wrapper">
     <%= candlestick_chart(
       @chart_data,
-      class: 'chart-container box',
+      class: 'chart-container',
       theme: 'roma',
-      options: {
-        chart: {
-          backgroundColor: '#f9f9f9', 
-          borderRadius: 5,            
-          borderWidth: 1              
+      options:{
+        color: "#fff",
+        grid:{
+          show: true,
         },
         xAxis: {
-          title: {
-            text: 'Date'   
+          axisTick: {
+            alignWithLabel: true
           },
-          labels: {
-            style: {
-              color: '#fff',          
-              fontSize: '12px'        
-            }
-          }
-        },
+          min: "dataMin",
+          max: "dataMax"
+          },
         yAxis: {
-            title: {
-            text: 'Price'   
+          axisTick: {
+            alignWithLabel: true
           },
-          labels: {
-            style: {
-              color: '#fff',           
-              fontSize: '12px'         
-            }
-          }
+          min: "dataMin",
+          max: "dataMax"
         },
-        plotOptions: {
-          candlestick: {
-            color: 'green',            
-            upColor: 'red',            
-            lineWidth: 1               
-          }
-        }
-      }
-    ) %>
+        dataZoom: [
+      {
+        type: 'slider',
+        start: 0,
+        end: 100,
+        xAxisIndex: [0],
+        zoomLock: false,
+        throttle: 100,
+        moveOnMouseMove: true,
+        moveOnMouseWheel: true,
+        preventDefaultMouseMove: true
+      },
+      {
+        type: 'slider',
+        start: 0,
+        end: 100,
+        yAxisIndex: [0],
+        zoomLock: false,
+        throttle: 100,
+        moveOnMouseMove: true,
+        moveOnMouseWheel: true,
+        preventDefaultMouseMove: true
+      },
+      {
+        type: 'inside',
+        start: 0,
+        end: 100,
+        xAxisIndex: 0,
+        zoomLock: false,
+        throttle: 100,
+        moveOnMouseMove: true,
+        moveOnMouseWheel: true,
+        preventDefaultMouseMove: true
+      },
+      {
+        type: 'inside',
+        start: 0,
+        end: 100,
+        yAxisIndex: 0,
+        zoomLock: false,
+        throttle: 100,
+        moveOnMouseMove: true,
+        moveOnMouseWheel: true,
+        preventDefaultMouseMove: true
+      },
+    ],
+      })
+ %>
   </section>
 </main>
