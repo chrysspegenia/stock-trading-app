@@ -38,7 +38,7 @@ class Stock < ApplicationRecord
   end
   
   def self.fetch_chart_data(iex_client, ticker_symbol)
-    historical_prices = iex_client.historical_prices(ticker_symbol, {range: "7d"})
+    historical_prices = iex_client.historical_prices(ticker_symbol, {range: "6m"})
     latest_market_price = iex_client.market[ticker_symbol]
     today = Date.today
 
@@ -46,10 +46,10 @@ class Stock < ApplicationRecord
       [(entry.date).to_s, [entry.open, entry.close, entry.low, entry.high]] 
     end
 
-    historical_data << [today.to_s, [latest_market_price.open.price,
-                                  latest_market_price.close.price,
-                                  latest_market_price.low,
-                                  latest_market_price.high]]
+    # historical_data << [today.to_s, [latest_market_price.open.price,
+    #                                   latest_market_price.close.price,
+    #                                   latest_market_price.low,
+    #                                   latest_market_price.high]]
     historical_data.to_h
 end
 
