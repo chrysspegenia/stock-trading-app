@@ -71,7 +71,7 @@ class TradersController < ApplicationController
 
     #POST /traders/:id/sell
     def sell
-      symbol, quantity, action, company_name, price = params.values_at(:symbol, :quantity, :action, :company_name, :price)
+      symbol, quantity, action, price = params.values_at(:symbol, :quantity, :action, :company_name, :price)
       price = price.to_i
       stock = Stock.find_by(symbol: symbol, user_id: current_user.id)
 
