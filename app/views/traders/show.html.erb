@@ -58,4 +58,42 @@
     <% end %>
   
   </section>
+
+  <section class="chart-wrapper">
+    <%= candlestick_chart(
+      @chart_data,
+      class: 'chart-container box',
+      theme: 'roma',
+      options: {
+        chart: {
+          backgroundColor: '#f9f9f9', # Set chart background color
+          borderRadius: 5,            # Set chart border radius
+          borderWidth: 1              # Set chart border width
+        },
+        xAxis: {
+          labels: {
+            style: {
+              color: '#fff',           # Set x-axis label color
+              fontSize: '12px'         # Set x-axis label font size
+            }
+          }
+        },
+        yAxis: {
+          labels: {
+            style: {
+              color: '#fff',           # Set y-axis label color
+              fontSize: '12px'         # Set y-axis label font size
+            }
+          }
+        },
+        plotOptions: {
+          candlestick: {
+            color: 'green',            # Set candlestick color for up bars
+            upColor: 'red',            # Set candlestick color for down bars
+            lineWidth: 1                # Set candlestick line width
+          }
+        }
+      }
+    ) %>
+  </section>
 </main>
