@@ -66,31 +66,37 @@
       theme: 'roma',
       options: {
         chart: {
-          backgroundColor: '#f9f9f9', # Set chart background color
-          borderRadius: 5,            # Set chart border radius
-          borderWidth: 1              # Set chart border width
+          backgroundColor: '#f9f9f9', 
+          borderRadius: 5,            
+          borderWidth: 1              
         },
         xAxis: {
+          title: {
+            text: 'Date'   
+          },
           labels: {
             style: {
-              color: '#fff',           # Set x-axis label color
-              fontSize: '12px'         # Set x-axis label font size
+              color: '#fff',          
+              fontSize: '12px'        
             }
           }
         },
         yAxis: {
+            title: {
+            text: 'Price'   
+          },
           labels: {
             style: {
-              color: '#fff',           # Set y-axis label color
-              fontSize: '12px'         # Set y-axis label font size
+              color: '#fff',           
+              fontSize: '12px'         
             }
           }
         },
         plotOptions: {
           candlestick: {
-            color: 'green',            # Set candlestick color for up bars
-            upColor: 'red',            # Set candlestick color for down bars
-            lineWidth: 1                # Set candlestick line width
+            color: 'green',            
+            upColor: 'red',            
+            lineWidth: 1               
           }
         }
       }
