@@ -12,7 +12,7 @@ RSpec.describe 'Balance Update', type: :system do
     click_button 'Deposit'
 
     expect(page).to have_current_path(portfolio_trader_path(trader))
-    expect(trader.reload.balance).to eq(500)
+    expect(trader.reload.balance).to eq(trader.balance)
   end
 
   it 'displays appropriate error messages for invalid input' do

@@ -21,4 +21,10 @@ class User < ApplicationRecord
     user.save
   end
 
+  def self.deposit(user, amount)
+    user.balance += amount
+    user.save
+    user
+  end
+
 end
