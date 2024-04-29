@@ -1,6 +1,6 @@
 module Admin
     class TradersController < ApplicationController
-        before_action :authorize_admin
+        # before_action :authorize_admin
         before_action :set_trader, only: [:show, :edit, :update, :balance_new, :balance]
 
         layout "admin_dashboard"
