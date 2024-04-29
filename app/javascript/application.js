@@ -2,5 +2,5 @@
 import "@hotwired/turbo-rails";
 import "controllers";
 import "./custom_login_register_page.js";
-import "echarts"
-import "echarts/theme/dark"
+import "echarts";
+import "echarts/theme/dark";
