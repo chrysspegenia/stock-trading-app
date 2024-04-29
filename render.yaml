@@ -1,12 +1,12 @@
 databases:
-  - name: stockpulse
+  - name: stock_trading_app_development
     databaseName: stock_trading_app_development
     user: chrysspegenia
     plan: free
 
 services:
   - type: web
-    name: stockpulse
+    name: stock_trading_app_development
     runtime: ruby
     plan: free
     buildCommand: "./bin/render-build.sh"
