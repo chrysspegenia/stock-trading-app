@@ -59,6 +59,7 @@ class TradersController < ApplicationController
         @transaction.save!
       else
         flash[:alert] = 'Insufficient balance to make the purchase.'
+        render :buy_new
       end
       redirect_to portfolio_trader_path
     end
@@ -71,7 +72,7 @@ class TradersController < ApplicationController
 
     #POST /traders/:id/sell
     def sell
-      symbol, quantity, action, price = params.values_at(:symbol, :quantity, :action, :company_name, :price)
+      symbol, quantity, company_name, action, price = params.values_at(:symbol, :quantity, :action, :company_name, :price)
       price = price.to_i
       stock = Stock.find_by(symbol: symbol, user_id: current_user.id)
 
@@ -80,6 +81,7 @@ class TradersController < ApplicationController
         @transaction.save!
       else
         flash[:alert] = 'Insufficient quantity of shares to sell.'
+        render :sell_new
       end
       redirect_to portfolio_trader_path
     end

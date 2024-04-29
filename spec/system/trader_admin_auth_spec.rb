@@ -22,7 +22,7 @@ RSpec.describe 'Login Authorization', type: :system do
   end
 
   scenario 'Trader user is redirected to trader page after login' do
-    Capybara.default_max_wait_time = 120
+    Capybara.default_max_wait_time = 30
     visit new_user_session_path
 
     within '#login_form' do

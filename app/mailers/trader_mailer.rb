@@ -3,7 +3,7 @@ class TraderMailer < ApplicationMailer
 
     def approved_email
         @trader = params[:user]
-        @url = 'http://127.0.0.1:3000/users/sign_in' #modify link when deployed. This link directs to login page
+        @url = 'https://stock-trading-app-development-3wka.onrender.com' #modify link when deployed. This link directs to login page
         mail(to: @trader.email, subject: 'Account Approval')
     end
 end

@@ -1,0 +1,23 @@
+databases:
+  - name: stock_trading_app_development
+    databaseName: stock_trading_app_development
+    user: chrysspegenia
+    plan: free
+
+services:
+  - type: web
+    name: stock_trading_app_development
+    runtime: ruby
+    plan: free
+    buildCommand: "./bin/render-build.sh"
+    # preDeployCommand: "bundle exec rails db:migrate" # preDeployCommand only available on paid instance types
+    startCommand: "bundle exec rails server"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: stock_trading_app_development
+          property: connectionString
+      - key: RAILS_MASTER_KEY
+        sync: false
+      - key: WEB_CONCURRENCY
+        value: 2 # sensible default
