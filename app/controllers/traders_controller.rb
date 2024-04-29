@@ -92,7 +92,8 @@ class TradersController < ApplicationController
 
     #POST /traders/:id/balance
     def balance
-      if current_user.update(balance: params[:init_balance])
+      user = User.deposit(current_user, params[:init_balance].to_i)
+      if user.persisted?
         flash[:notice] = 'Wallet balance has been successfully set.'
       else
         flash[:alert] = 'Failed to save the wallet balance.'
