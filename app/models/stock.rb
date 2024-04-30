@@ -46,10 +46,10 @@ class Stock < ApplicationRecord
       [(entry.date).to_s, [entry.open, entry.close, entry.low, entry.high]] 
     end
 
-    historical_data << [today.to_s, [latest_market_price.open.price,
-                                      latest_market_price.close.price,
-                                      latest_market_price.low,
-                                      latest_market_price.high]]
+    # historical_data << [today.to_s, [latest_market_price.open.price,
+    #                                   latest_market_price.close.price,
+    #                                   latest_market_price.low,
+    #                                   latest_market_price.high]]
     historical_data.to_h
 end
 
