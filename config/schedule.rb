@@ -32,5 +32,5 @@
 # end
 
 every 2.minutes do
-  runner "Stock.update_latest_prices", environment: "production"
+  runner "Stock.update_latest_prices"
 end
