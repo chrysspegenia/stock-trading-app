@@ -78,7 +78,8 @@
 
         <td>
           <%= link_to trader_path(stock.symbol) do %>
-              $<%= format_decimal_with_commas(stock.latest_price) %>
+              <% #While the crontab is not working. %>
+              $<%= format_decimal_with_commas(iex_client.quote(stock.symbol).latest_price) %>
           <% end %>
         </td>
 
@@ -96,7 +97,10 @@
 
         <td>
           <%= link_to trader_path(stock.symbol) do %>
-              $<%= format_decimal_with_commas(stock.current_value) %>
+              <% #While the crontab is not working. %>
+              $<%= format_decimal_with_commas(
+                (stock.shares * iex_client.quote(stock.symbol).latest_price).round(2)
+                ) %>
           <% end %>
         </td>
 
