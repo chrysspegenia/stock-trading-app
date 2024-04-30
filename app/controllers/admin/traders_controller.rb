@@ -5,7 +5,6 @@ module Admin
 
         layout "admin_dashboard"
         # Get /admin/traders
-        #loads both approved and non-approved traders
         def index
             @traders = User.all.where(admin: false, approved: true)
             @pending_traders = User.where(admin: false, approved: false)
@@ -61,7 +60,7 @@ module Admin
         #POST /admin/traders
         def create
             @trader = User.new(trader_params)
-            @trader.skip_confirmation! #to include this need to add confirmed_at in table and confirmable in model
+            @trader.skip_confirmation!
             @trader.approved = true
 
             if @trader.save
