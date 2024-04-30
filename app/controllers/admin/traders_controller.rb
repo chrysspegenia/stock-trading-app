@@ -1,6 +1,6 @@
 module Admin
     class TradersController < ApplicationController
-        # before_action :authorize_admin
+        before_action :authorize_admin
         before_action :set_trader, only: [:show, :edit, :update, :balance_new, :balance]
 
         layout "admin_dashboard"
@@ -24,10 +24,6 @@ module Admin
 
         #POST /admin/traders/:id/approve
         def approve
-            # @pending_trader = User.where(approved: false).find(params[:id])
-            # @pending_trader.approved = true
-            # @pending_trader.save
-
             @pending_trader = User.find(params[:id])
             @pending_trader.toggle!(:approved)
 
