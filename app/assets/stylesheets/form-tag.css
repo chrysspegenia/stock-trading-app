@@ -1,0 +1,134 @@
+.form-tag-container {
+  width: 550px;
+  background: transparent;
+  border: 2px solid #0ef;
+  overflow: hidden;
+  box-shadow: 0 0 25px #0ef;
+  color: #fff;
+  margin-top: 3em;
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.form-tag-container h2 {
+  font-size: 32px;
+  text-align: center;
+}
+
+.form-tag-container .form-tag-box {
+  width: 80%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  background: transparent;
+  margin-top: 3em;
+}
+
+.form-tag-box .input-box {
+  position: relative;
+  width: 100%;
+  height: 50px;
+  margin: 25px 0;
+}
+
+.form-tag-box .input-box input {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  padding: 0;
+  padding-right: 23px;
+  border: none;
+  border-bottom: 2px solid #fff;
+  outline: none;
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;
+  transition: 0.5s;
+}
+
+.form-tag-box .input-box input:focus,
+.form-tag-box .input-box input:valid {
+  border-bottom-color: #0ef;
+}
+
+.form-tag-box label,
+.form-tag-box i {
+  font-size: 1.5rem;
+}
+
+.form-tag-container .stock-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 25%;
+  width: 100%;
+}
+
+.form-tag-container .trader-details {
+  margin-top: 2em;
+}
+
+.form-tag-container .stock-details h4 {
+  font-size: 1.6rem;
+  margin-bottom: 0.5em;
+}
+
+.form-tag-container .stock-details .stock-data {
+  font-size: 1.4rem;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0;
+  width: 60%;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.form-tag-box .form-btn {
+  margin-top: 20px;
+  width: 100%;
+  height: 45px;
+  outline: none;
+  border-radius: 40px;
+  cursor: pointer;
+  font-size: 1.3rem;
+  font-weight: 600;
+  transition: 0.5s;
+  background: transparent;
+}
+
+.form-tag-box .form-btn.deposit {
+  border: 2px solid #0ef;
+  color: #0ef;
+}
+
+.form-tag-box .form-btn.deposit:hover {
+  background: #0ef;
+  box-shadow: 0 0 25px #0ef;
+  color: #fff;
+}
+
+.form-tag-box .form-btn.buy {
+  border: 2px solid #28a745;
+  color: #28a745;
+}
+
+.form-tag-box .form-btn.buy:hover {
+  background: #28a745;
+  box-shadow: 0 0 25px #28a745;
+  color: #fff;
+}
+
+.form-tag-box .form-btn.sell {
+  border: 2px solid #f02c00;
+  color: #f02c00;
+}
+
+.form-tag-box .form-btn.sell:hover {
+  background: #f02c00;
+  box-shadow: 0 0 25px #f02c00;
+  color: #fff;
+}

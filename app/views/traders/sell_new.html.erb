@@ -1,24 +1,41 @@
-<h2>Sell</h2>
+<main class="form-tag-container">
 
-<h4> Stock Details </h4>
-<div> Company Name: <%= @quote.company_name %> </div>
-<div> Bought Price: $<%= @trader.stocks.find_by(symbol: params[:id]).price %> </div>
-<div> Current Price: $<%= @trader.stocks.find_by(symbol: params[:id]).latest_price %> </div>
+  <section class="stock-details">
+    <h4> Stock Details </h4>
 
-<%= form_with( url: sell_trader_path(@trader), method: :post) do |form| %>
-  <%= form.hidden_field :symbol, value: @quote.symbol %>
-  <%= form.hidden_field :action, value: 'sell' %>
-  <%= form.hidden_field :company_name, value: @quote.company_name %>
-  <%= form.hidden_field :price, value: @trader.stocks.find_by(symbol: params[:id]).latest_price %>
+    <div class="stock-data"> 
+      <label>Company</label> 
+      <span><%= @quote.company_name %></span> 
+    </div>
+    <div class="stock-data">
+      <label>Shares Owned</label> 
+      <span><%= @trader.stocks.find_by(symbol: params[:id]).shares %></span>
+    </div>
+    <div class="stock-data">
+      <label>Bought Price</label> 
+      <span>$<%= @trader.stocks.find_by(symbol: params[:id]).price %></span>
+    </div>
+    <div class="stock-data">
+      <label>Current Price</label> 
+      <span>$<%= @trader.stocks.find_by(symbol: params[:id]).latest_price %></span>
+    </div>
+  </section>
 
-  <div class="field">
-    <%= form.label :quantity %>
-    <%= form.number_field :quantity, min: 1, required: true %>
+  <div class="form-tag-box">
+    <%= form_with( url: sell_trader_path(@trader), method: :post) do |form| %>
+      <%= form.hidden_field :symbol, value: @quote.symbol %>
+      <%= form.hidden_field :action, value: 'sell' %>
+      <%= form.hidden_field :company_name, value: @quote.company_name %>
+      <%= form.hidden_field :price, value: @trader.stocks.find_by(symbol: params[:id]).latest_price %>
+
+      <div class="input-box">
+        <%= form.number_field :quantity, min: 1, required: true %>
+        <%= form.label :quantity %>
+      </div>
+
+      <div class="actions">
+        <%= form.submit "Sell", class: "form-btn sell" %>
+      </div>
+    <% end %>
   </div>
-
-  <div class="actions">
-    <%= form.submit "Sell" %>
-  </div>
-<% end %>
-
-<div><%= link_to "Main", traders_path %></div>
+</main>

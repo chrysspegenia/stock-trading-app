@@ -1,22 +1,32 @@
-<h2>Buy</h2>
+<main class="form-tag-container">
+  
+  <section class="stock-details">
+    <h4> Stock Details </h4>
+    <div class="stock-data"> 
+      <label>Company</label> 
+      <span><%= @quote.company_name %></span> 
+    </div>
 
-<h4> Stock Details </h4>
-<div> Company Name: <%= @quote.company_name %> </div>
-<div> Current Price: $<%= @quote.latest_price %> </div>
+    <div class="stock-data">
+      <label>Current Price</label>
+      <span>$<%= format_decimal_with_commas(@quote.latest_price) %></span> 
+    </div>
+  </section>
 
-<%= form_with(url: buy_trader_path(@trader), method: :post) do |form| %>
-  <%= form.hidden_field :symbol, value: @quote.symbol %>
-  <%= form.hidden_field :action, value: 'buy' %>
-  <%= form.hidden_field :company_name, value: @quote.company_name %>
+  <div class="form-tag-box">
+    <%= form_with(url: buy_trader_path(@trader), method: :post) do |form| %>
+      <%= form.hidden_field :symbol, value: @quote.symbol %>
+      <%= form.hidden_field :action, value: 'buy' %>
+      <%= form.hidden_field :company_name, value: @quote.company_name %>
 
-  <div class="field">
-    <%= form.label :quantity %>
-    <%= form.number_field :quantity, min: 1, required: true %>
+      <div class="input-box">
+        <%= form.number_field :quantity, min: 1, required: true %>
+        <%= form.label :quantity %>
+      </div>
+
+      <div class="actions">
+        <%= form.submit "Buy", class: "form-btn buy" %>
+      </div>
+    <% end %>
   </div>
-
-  <div class="actions">
-    <%= form.submit "Buy" %>
-  </div>
-<% end %>
-
-<div><%= link_to "Main", traders_path %></div>
+</main>

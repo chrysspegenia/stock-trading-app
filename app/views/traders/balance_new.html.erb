@@ -1,9 +1,22 @@
-<h1>Deposit</h1>
-<%= form_tag balance_trader_path(@trader) do %>
-  <div class="form-group">
-    <%= label_tag :init_balance, "Amount:" %>
-    <%= text_field_tag :init_balance %>
-  </div>
+<main class="form-tag-container">
+    <h2>Deposit</h2>
 
-  <%= submit_tag "Deposit" %>
-<% end %>
+    <section class="stock-details">
+      <div class="stock-data">
+        <label>Current Balance</label> 
+        <span>$<%=format_decimal_with_commas(@trader.balance)%></span>
+      </div>
+    </section>
+
+    <div class="form-tag-box">
+      <%= form_tag balance_trader_path(@trader) do %>
+        <div class="input-box">      
+          <%= text_field_tag :init_balance, nil, required: true %>
+          <%= label_tag :init_balance, "Amount" %>
+          <i class='bx bx-money'></i>
+        </div>
+
+        <%= submit_tag "Deposit", class: "form-btn deposit" %>
+      <% end %>
+    </div>
+</main>

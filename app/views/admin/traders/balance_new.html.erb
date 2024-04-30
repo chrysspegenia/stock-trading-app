@@ -1,12 +1,22 @@
-<h1>Initialize Balance for Trader</h1>
+<main class="form-tag-container">
+  <h2>Initialize Balance for Trader</h2>
 
-<p>Trader: <%= @trader.first_name %> <%= @trader.last_name %></p>
+  <section class="stock-details trader-details">
+    <div class="stock-data">
+      <label>Trader</label> 
+      <span><%= @trader.first_name %> <%= @trader.last_name %><span>
+    </div>
+  </section>
 
-<%= form_with(url: balance_admin_trader_path(@trader), method: :post) do |form| %>
-  <div class="field">
-    <%= form.label :initial_balance, "Amount" %>
-    <%= form.text_field :initial_balance %>
+  <div class="form-tag-box">
+    <%= form_with(url: balance_admin_trader_path(@trader), method: :post) do |form| %>
+      <div class="input-box">
+        <%= form.text_field :initial_balance, required: true %>
+        <%= form.label :initial_balance, "Amount" %>
+        <i class='bx bx-money'></i>
+      </div>
+
+      <%= form.submit "Set Balance", class: "form-btn deposit"  %>
+    <% end %>
   </div>
-
-  <%= form.submit "Set Balance" %>
-<% end %>
+</main>
