@@ -57,11 +57,11 @@ class TradersController < ApplicationController
       if (quantity.to_i * price) <= current_user.balance
         @transaction = Transaction.create_transaction(current_user, stock, quantity.to_i, price, action)
         @transaction.save!
+        redirect_to portfolio_trader_path
       else
         flash[:alert] = 'Insufficient balance to make the purchase.'
-        render :buy_new
+        redirect_to buy_new_trader_path(symbol)
       end
-      redirect_to portfolio_trader_path
     end
 
     #GET /traders/:symbol/sell_new  ... :symbol value is the params[:id]
@@ -79,11 +79,11 @@ class TradersController < ApplicationController
       if stock && stock.shares >= quantity.to_i
         @transaction = Transaction.create_transaction(current_user, stock, quantity.to_i, price, action)
         @transaction.save!
+        redirect_to portfolio_trader_path
       else
         flash[:alert] = 'Insufficient quantity of shares to sell.'
-        render :sell_new
+        redirect_to sell_new_trader_path(symbol)
       end
-      redirect_to portfolio_trader_path
     end
 
     #GET /traders/:id/balance_new
