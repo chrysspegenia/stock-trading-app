@@ -28,7 +28,6 @@
     </tr>
   </thead>
   <tbody>
-    <% cache('quotes_table', expires_in: 1.hour) do %>
       <% if @quotes.nil? || @quotes.empty? %>
       <tr>
         <td colspan="8" style="text-align: center;">-- Data is currently unavailable. Please try again later. --</td>
@@ -78,7 +77,6 @@
             <% end %>
           </tr>
       <% end %>
-    <% end %>
     <% end %>
   </tbody>
 </table>
