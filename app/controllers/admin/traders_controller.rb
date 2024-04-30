@@ -11,12 +11,6 @@ module Admin
             @pending_traders = User.where(admin: false, approved: false)
         end
 
-        #temporaray method to grant admin status
-        def grant_admin
-            current_user.update_attribute(:admin, true)
-            redirect_to admin_traders_path, notice: "You have been granted admin status."
-        end
-
         # GET /admin/traders/pendings
         def pendings
             @pending_traders = User.where(admin: false, approved: false)
@@ -86,6 +80,12 @@ module Admin
                 render :edit, status: :unprocessable_entity
             end
         end
+
+        # #temporaray method to grant admin status
+        # def grant_admin
+        #     current_user.update_attribute(:admin, true)
+        #     redirect_to admin_traders_path, notice: "You have been granted admin status."
+        # end
 
         private
 
