@@ -35,12 +35,12 @@ class TradersController < ApplicationController
 
     #GET traders/:id/portfolio
     def portfolio
-      @stocks = current_user.stocks.where('shares > ?', 0)
+      @stocks = current_user.stocks.where('shares > ?', 0).order(id: :desc)
     end
 
     #GET traders/:id/transaction
     def transaction
-      @transactions = current_user.transactions.all
+      @transactions = current_user.transactions.all.order(id: :desc)
     end
 
     #GET /traders/:symbol/buy_new  ... :symbol value is the params[:id]
