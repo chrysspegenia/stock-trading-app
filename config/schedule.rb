@@ -31,6 +31,6 @@
 #   command "cd /home/chad/workspace/stock-trading-app && RAILS_ENV=#{ENV['RAILS_ENV']} /home/chad/.asdf/shims/bundle exec bin/rails runner 'Stock.update_latest_prices' >> /home/chad/workspace/stock-trading-app/log/logfile.log 2>&1"
 # end
 
-every 2.minutes do
+every 10.minutes do
   runner "Stock.update_latest_prices"
 end
