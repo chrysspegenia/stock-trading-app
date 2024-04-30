@@ -71,7 +71,7 @@
               <% end %>
             </td>
 
-            <% if @trader.approved? %>
+            <% if !@trader.approved? %>
               <td>
                   <%= link_to "Buy", buy_new_trader_path(quote.symbol), class: "trader-buy-btn" %>
               </td>
