@@ -3,13 +3,14 @@
 <h4> Stock Details </h4>
 <div> Company Name: <%= @quote.company_name %> </div>
 <div> Bought Price: $<%= @trader.stocks.find_by(symbol: params[:id]).price %> </div>
-<div> Current Price: $<%= @trader.stocks.find_by(symbol: params[:id]).latest_price %> </div>
+<div> Current Price: $<%= @quote.latest_price %> </div>
+<div> Available Shares: <%= @trader.stocks.find_by(symbol: params[:id]).shares %> shares</div>
 
 <%= form_with( url: sell_trader_path(@trader), method: :post) do |form| %>
   <%= form.hidden_field :symbol, value: @quote.symbol %>
   <%= form.hidden_field :action, value: 'sell' %>
   <%= form.hidden_field :company_name, value: @quote.company_name %>
-  <%= form.hidden_field :price, value: @trader.stocks.find_by(symbol: params[:id]).latest_price %>
+  <%= form.hidden_field :price, value: @quote.latest_price %>
 
   <div class="field">
     <%= form.label :quantity %>
