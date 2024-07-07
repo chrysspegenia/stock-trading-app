@@ -231,10 +231,26 @@
   background-color: #081b29;
 }
 
+.registration-page-wrapper .form-wrapper,
+.login-page-wrapper .form-wrapper {
+  width: 30%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #081b29;
+}
+
+.registration-page-wrapper .form-wrapper a,
+.login-page-wrapper .form-wrapper a {
+  color: #fff;
+}
+
 .form-box.registration-form,
 .form-box.login-form {
-  width: 400px;
-  height: 650px;
+  width: 80%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;

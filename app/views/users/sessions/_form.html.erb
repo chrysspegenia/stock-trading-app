@@ -1,0 +1,32 @@
+<div class="form-box login-form">
+
+      <h2 class="animation" style="--i:0; --j:21;">Login</h2>
+
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { id: "login_form" }) do |f| %>
+        <div class="input-box animation" style="--i:1; --j:22;">
+          <%= f.text_field :email, id: "login_user_email", autofocus: true, autocomplete: "email", required: true %>
+          <%= f.label :email %>
+          <i class='bx bxs-envelope'></i>
+        </div>
+
+        <div class="input-box animation" style="--i:2; --j:23;">
+          <%= f.password_field :password, id: "login_user_password", autocomplete: "current-password", required: true %>
+          <%= f.label :password %>
+          <i class='bx bxs-lock-alt'></i>
+        </div>
+
+        <div class="actions">
+          <%= button_to "Login", session_path(resource), data: {turbo_frame: "_top"}, class: "form-btn animation", style:"--i:3; --j:24;"%>
+        </div>
+
+        
+         <%# <%= render "devise/shared/links", resource_name: @resource_name, devise_mapping: @devise_mapping %>
+      <% end %>
+
+      <div class="logreg-link animation" style="--i:4; --j:25;">
+        <p>Don't have an account?
+          <span class="register-link">Sign Up</span>
+        </p>
+      </div>
+
+</div>
