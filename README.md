@@ -1,4 +1,4 @@
-# Project: Stock Trading App
+# StockPulse: Stock Trading App
 
 ## Requirements
 
