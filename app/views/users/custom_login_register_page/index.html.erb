@@ -17,9 +17,12 @@
     <span class="bg-animate2"></span>
     
     <div class="form-box login">
+      <% if false %>
       <%= turbo_frame_tag "login_form_frame", src: new_user_session_path do %>
         <div class="form-content">Login form should be here.</div> <%# placeholder %>
       <% end %>
+      <% end %>
+      <%= render "users/sessions/form", resource: @resource, resource_name: @resource_name, devise_mapping: @devise_mapping %>
     </div>
 
     <div class="info-text login">
@@ -28,9 +31,12 @@
     </div>
 
     <div class="form-box register">
+      <% if false%>
       <%= turbo_frame_tag "registration_form_frame", src: new_user_registration_path do %>
         <div class="form-content">Registration form should be here.</div> <%# placeholder %>
       <% end %>
+      <% end %>
+      <%= render "users/registrations/form", resource: @resource, resource_name: @resource_name, devise_mapping: @devise_mapping %> 
     </div>
     
     <div class="info-text register">
